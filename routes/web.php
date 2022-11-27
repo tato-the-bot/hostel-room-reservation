@@ -16,3 +16,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('login', 'App\Http\Controllers\LoginController@login')->name('login');
+Route::post('login', 'App\Http\Controllers\LoginController@login')->name('login');
+
+// Student routes
+Route::group(['middleware' => ['auth', 'role:student']], function() {
+    Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
+});
+
+// Agent routes
+Route::group(['middleware' => ['auth', 'role:agent'], 'as' => 'agent.', 'prefix' => 'agent'], function() {
+    Route::get('dashboard', 'App\Http\Controllers\Agent\DashboardController@index')->name('dashboard');
+});
+
+// Admin routes
+Route::group(['middleware' => ['auth', 'role:admin'], 'as' => 'admin.', 'prefix' => 'admin'], function() {
+    Route::get('dashboard', 'App\Http\Controllers\Admin\DashboardController@index')->name('dashboard');
+});
