@@ -15,19 +15,16 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id(); 
-            $table->string('student_id');
-            $table->string('room_id');
-            $table->string('tranaction_id');
-            $table->timestamps('contract_start_date');
-            $table->timestamps('contract_end_date');
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('room_id');
+            $table->unsignedBigInteger('transaction_id');
+            $table->datetime('contract_start_date');
+            $table->datetime('contract_end_date');
             $table->string('remark');
             $table->boolean('status');      
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('students');
-            $table->foreign('room_id')->references('id')->on('room_categories');
-
-
+            // $table->foreign('student_id')->references('id')->on('user');
         });
     }
 
