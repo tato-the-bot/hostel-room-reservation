@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role')->default(User::USER_STUDENT_ROLE);
-            $table->boolean('status')->default(User::USER_STATUS_UNVERIFIED);
+            $table->integer('status')->default(User::USER_STATUS_UNVERIFIED);
             $table->rememberToken();
             $table->timestamps();
         });
