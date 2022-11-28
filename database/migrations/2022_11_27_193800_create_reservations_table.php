@@ -20,8 +20,8 @@ class CreateReservationsTable extends Migration
             $table->unsignedBigInteger('transaction_id');
             $table->datetime('contract_start_date');
             $table->datetime('contract_end_date');
-            $table->string('remark');
-            $table->boolean('status');      
+            $table->string('remark')->nullable();
+            $table->integer('status')->default(0);     
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
