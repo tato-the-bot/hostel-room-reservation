@@ -28,6 +28,7 @@ class Room extends Model
     ];
 
     protected $fillable = [
+        'room_title',
         'room_type',
         'room_desc',
         'monthly_rental',
