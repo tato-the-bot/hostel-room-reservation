@@ -29,7 +29,15 @@ Route::group(['middleware' => ['auth', 'role:student']], function() {
 // Agent routes
 Route::group(['middleware' => ['auth', 'role:agent'], 'as' => 'agent.', 'prefix' => 'agent'], function() {
     Route::get('dashboard', 'App\Http\Controllers\Agent\DashboardController@index')->name('dashboard');
-    Route::get('room/create', 'App\Http\Controllers\Agent\RoomController@create')->name('agent.room-form');
+    Route::get('room/index', 'App\Http\Controllers\Agent\RoomController@index')->name('room-index');
+    
+    Route::get('room/update/{roomId}', 'App\Http\Controllers\Agent\RoomController@update')->name('room-update');
+    Route::post('room/update/{roomId}', 'App\Http\Controllers\Agent\RoomController@update')->name('room-update');
+    
+    Route::get('room/delete/{roomId}', 'App\Http\Controllers\Agent\RoomController@delete')->name('room-delete');
+
+    Route::get('room/create', 'App\Http\Controllers\Agent\RoomController@create')->name('room-create');
+    Route::post('room/create', 'App\Http\Controllers\Agent\RoomController@create')->name('room-create');
 });
 
 // Admin routes

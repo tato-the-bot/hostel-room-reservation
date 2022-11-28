@@ -9,9 +9,23 @@ class Room extends Model
 {
     use HasFactory;
 
-    const BIG_ROOM_TYPE = 'big_room';
-    const MEDIUM_ROOM_TYPE = 'medium_room';
-    const SINGLE_ROOM_TYPE = 'single_room';
+    const ROOM_TYPE_BIG = 'big_room';
+    const ROOM_TYPE_MEDIUM = 'medium_room';
+    const ROOM_TYPE_SINGLE = 'single_room';
+
+    const ROOM_TYPE_LABEL = [
+        self::ROOM_TYPE_BIG => 'Big Room',
+        self::ROOM_TYPE_MEDIUM => 'Medium Room',
+        self::ROOM_TYPE_SINGLE => 'Single Room',
+    ];
+
+    const STATUS_ACTIVE = 0;
+    const STATUS_RESERVED = 1;
+
+    const STATUS_LABEL = [
+        self::STATUS_ACTIVE => 'Active',
+        self::STATUS_RESERVED => 'Reserved',
+    ];
 
     protected $fillable = [
         'room_type',
