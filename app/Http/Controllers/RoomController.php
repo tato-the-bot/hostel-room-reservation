@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Room;
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
 {
@@ -33,14 +34,21 @@ class RoomController extends Controller
     {
         $room = Room::find($roomId);
 
-        $bookingDetails = $request->validate([
-            'contract_start_date' => ['required', 'date_format:Y-m-d'],
-            'duration' => ['required', 'numeric'],
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'contract_start_date' => ['required', 'date_format:Y-m-d'],
+                'duration' => ['required', 'numeric'],
+            ]
+        );
+
+        if ($validator->fails()) {
+            dd($validator->errors());
+        }
 
         $reservation = new Reservation;
-        $reservation->contract_start_date = $bookingDetails['contract_start_date'] . ' 00:00:00';
-        $reservation->contract_end_date = date('Y-m-d', strtotime("+3 months", strtotime($bookingDetails['contract_start_date']))) . ' 23:59:49';
+        $reservation->contract_start_date = $request->get('contract_start_date') . ' 00:00:00';
+        $reservation->contract_end_date = date('Y-m-d', strtotime('+' . $request->get('duration') . ' months', strtotime($request->get('contract_start_date')))) . ' 23:59:49';
         $reservation->user_id = Auth::user()->id;
         $reservation->room_id = $room->id;
         $reservation->status = Reservation::STATUS_TYPE_PENDING_PAYMENT;
