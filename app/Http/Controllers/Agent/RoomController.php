@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Room;
+use App\Http\Controllers\ImageUploadController;
 
 class RoomController extends Controller
 {
@@ -22,8 +23,60 @@ class RoomController extends Controller
 
     public function update(Request $request, $roomId)
     {
-        dd("Room Update Page placeholder " . $roomId);
-    }
+        if ($request->isMethod('POST')) {
+
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'room_title' => ['required','string'],
+                    'room_type' => ['required'],
+                    'room_desc' => ['nullable', 'string'],
+                    'monthly_rental' => ['required'],
+                    'deposit' => ['required'],
+                    'image' => ['nullable','image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
+                    'remark' => ['nullable','string'],
+                ]
+            );
+
+
+            if ($validator->fails()) {
+                dd($validator->errors());
+            }
+
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('images'), $imageName);
+            $imgURL = '/images/'.$imageName;
+     
+            $room = Room:: where('user_id', Auth::user()->id)
+                    ->where('id', $roomId)
+                    ->first();
+
+            $room->room_title = $request->get('room_title');
+            $room->room_type = $request->get('room_type');
+            $room->room_desc = $request->get('room_desc') ;
+            $room->monthly_rental = $request->get('monthly_rental');
+            $room->deposit = $request->get('deposit');
+            $room->image = $imgURL;
+            $room->remark = $request->get('remark');
+
+            $room->status = 0;
+            $room->user_id = Auth::user()->id;
+    
+            $room->save();
+            
+            return redirect()->route('agent.room-index');
+        }
+
+        
+        $room = Room:: where('user_id', Auth::user()->id)
+            ->where('id', $roomId)
+            ->firstOrFail();
+
+        return view('agent.room-update', [
+            'room' => $room
+        ]);
+    }    
+
 
     public function delete(Request $request, $roomId)
     {
@@ -46,7 +99,7 @@ class RoomController extends Controller
                     'room_desc' => ['nullable', 'string'],
                     'monthly_rental' => ['required'],
                     'deposit' => ['required'],
-                    'image' => ['nullable','string'],
+                    'image' => ['nullable','image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
                     'remark' => ['nullable','string'],
                 ]
             );
@@ -54,6 +107,10 @@ class RoomController extends Controller
             if ($validator->fails()) {
                 dd($validator->errors());
             }
+
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('images'), $imageName);
+            $imgURL = '/images/'.$imageName;
             
             $room = new Room;
             $room->room_title = $request->get('room_title');
@@ -61,7 +118,7 @@ class RoomController extends Controller
             $room->room_desc = $request->get('room_desc') ;
             $room->monthly_rental = $request->get('monthly_rental');
             $room->deposit = $request->get('deposit');
-            $room->image = $request->get('image');
+            $room->image = $imgURL;
             $room->remark = $request->get('remark');
 
             $room->status = 0;

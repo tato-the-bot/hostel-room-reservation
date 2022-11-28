@@ -35,7 +35,7 @@ and open the template in the editor.
                             Room Type:
                         </td>
                         <td>
-                        <select name="room_type" id="room_types" class="form-select">
+                        <select name="room_type" id="room_type" class="form-select">
                             <option value="">Select Room Type</option>
                             <option value="big_room">Big Room</option>
                             <option value="medium_room">Medium Room</option>
