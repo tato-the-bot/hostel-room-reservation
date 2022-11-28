@@ -15,10 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('login', 'App\Http\Controllers\LoginController@login')->name('login');
 Route::post('login', 'App\Http\Controllers\LoginController@login')->name('login');
+Route::get('logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
 
 
 // Student routes

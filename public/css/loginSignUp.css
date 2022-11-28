@@ -1,0 +1,158 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background:linear-gradient(90deg, #E6E6FA, #CBC3E3);
+}
+
+.fp-page{
+     width:380px;
+    position: relative;
+    margin:6% auto;
+    padding: 40px;
+    box-shadow: 0px 0px 24px #AA98A9;
+    background: #ffffff;
+}
+
+.login{
+    width:380px;
+    position: relative;
+    margin:6% auto;
+    padding: 40px;
+    box-shadow: 0px 0px 24px #AA98A9;
+    background: #ffffff;
+}
+
+.signup{
+    width:380px;
+    position: relative;
+    margin:6% auto;
+    padding: 40px;
+    box-shadow: 0px 0px 24px #AA98A9;
+    background: #ffffff;
+}
+
+img{
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title{
+    padding: 5px;
+    padding-bottom: 25px;
+    margin: 5px;
+    color: black;
+    font-size: 30px;
+    text-align: center;
+}
+
+.desc_text{
+    padding: 10px 10px 0px 0px;
+    margin: 5px;
+    color: black;
+    font-size: 20px;
+}
+
+.form_input{
+    border:none;
+    border-bottom: 3px solid #C0C0C0;
+    background: none;
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;       
+}
+
+.form_input:active,.form_input:focus,.form_input:hover{
+    outline: none;
+    border-bottom-color: #702963;
+    transition-timing-function: ease;
+    transition-duration: 0.8s;
+}
+
+.btn{
+    font-size: 20px;
+    width: 100%;
+    padding: 10px;
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    border-radius: 30px;
+    border: 2px solid #702963;
+    color:#702963;
+    box-shadow: 0px 0px 2px #702963;
+    background: #ffffff;
+
+}
+
+.btn:active,.btn:hover,.btn:focus{
+    background: #702963;
+    color: #ffffff;
+    transition-timing-function: ease;
+    transition-duration: 0.8s;
+}
+
+.stmt{
+    padding: 5px 0 20px 0;
+    font-size: 13px;
+    color: #C0C0C0;
+    text-decoration: none;
+    text-align: center;
+}
+
+.click{
+    color: #808080;
+}
+
+.click:active, .click:focus, .click:hover{
+    color: #702963;
+}
+
+.forget_pwd{
+    padding: 10px 0 5px 0;
+    text-align: right;
+}
+
+#forget-line{
+    font-size: 14px;
+    color: #C0C0C0;
+    text-decoration: none;
+}
+
+#forget-line:active, #forget-line:focus, #forget-line:hover{
+    color: #702963;
+}
+
+.alert-success{
+    padding: 10px;
+    font-size: 14px;
+    text-align: center; 
+    color: #097969;
+    background:#AFE1AF;
+}
+
+.alert-danger{
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;    
+    color: #A42A04;
+    background:#FAA0A0;
+}
+
+.form_box{
+    border: 2px solid #C0C0C0;
+    background: #ffffff;
+    padding: 10px 0px 10px 10px;
+    width: 100%;
+    font-size: 15px; 
+}
+
+.form_box:active,.form_box:focus,.form_box:hover{
+    outline: none;
+    border-color: #702963;
+    transition-timing-function: ease;
+    transition-duration: 0.8s;
+}
