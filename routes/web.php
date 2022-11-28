@@ -20,17 +20,19 @@ Route::get('/', function () {
 Route::get('login', 'App\Http\Controllers\LoginController@login')->name('login');
 Route::post('login', 'App\Http\Controllers\LoginController@login')->name('login');
 
+
 // Student routes
 Route::group(['middleware' => ['auth', 'role:student']], function() {
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('room', 'App\Http\Controllers\RoomController@index')->name('room');
+    Route::get('room/index', 'App\Http\Controllers\RoomController@index')->name('room-index');
 });
 
 // Agent routes
 Route::group(['middleware' => ['auth', 'role:agent'], 'as' => 'agent.', 'prefix' => 'agent'], function() {
     Route::get('dashboard', 'App\Http\Controllers\Agent\DashboardController@index')->name('dashboard');
     Route::get('room/index', 'App\Http\Controllers\Agent\RoomController@index')->name('room-index');
-    
+
     Route::get('room/update/{roomId}', 'App\Http\Controllers\Agent\RoomController@update')->name('room-update');
     Route::post('room/update/{roomId}', 'App\Http\Controllers\Agent\RoomController@update')->name('room-update');
     
