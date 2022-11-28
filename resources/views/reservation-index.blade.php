@@ -70,7 +70,11 @@ and open the template in the editor.
                             @endif
                         </td>
                         <td>
-                            <a href="#" class="btn btn-primary">Update Reservation</a>
+                            @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_PENDING_PAYMENT)
+                            <a href="{{ route('reservation-update', $reservation->id) }}" class="btn btn-primary">Update Reservation</a>
+                            <a href="{{ route('reservation-pay', $reservation->id) }}" class="btn btn-secondary">Make Payment</a>
+                            <a href="{{ route('reservation-cancel', $reservation->id) }}" class="btn btn-warning">Cancel</a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

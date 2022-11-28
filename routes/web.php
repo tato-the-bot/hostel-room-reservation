@@ -29,7 +29,12 @@ Route::group(['middleware' => ['auth', 'role:student']], function() {
     Route::get('room/index', 'App\Http\Controllers\RoomController@index')->name('room-index');
     Route::get('room/view/{roomId}', 'App\Http\Controllers\RoomController@view')->name('room-view');
     Route::post('room/book/{roomId}', 'App\Http\Controllers\RoomController@book')->name('room-book');
+
     Route::get('reservation/index', 'App\Http\Controllers\ReservationController@index')->name('reservation-index');
+    Route::get('reservation/update/{reservationId}', 'App\Http\Controllers\ReservationController@update')->name('reservation-update');
+    Route::post('reservation/update/{reservationId}', 'App\Http\Controllers\ReservationController@update')->name('reservation-update');
+    Route::get('reservation/cancel/{reservationId}', 'App\Http\Controllers\ReservationController@cancel')->name('reservation-cancel');
+    Route::get('reservation/pay/{reservationId}', 'App\Http\Controllers\ReservationController@pay')->name('reservation-pay');
     
     Route::get('reservation', 'App\Http\Controllers\ReservationController@index')->name('reservation');
 });

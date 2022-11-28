@@ -3,17 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Room;
 
 class Reservation extends Model
 {
     const STATUS_TYPE_PENDING_PAYMENT = 0;
     const STATUS_TYPE_PENDING_APPROVAL = 1;
     const STATUS_TYPE_APPROVED = 2;
+    const STATUS_TYPE_CANCELLED = 3;
 
     const STATUS_LABEL = [
         self::STATUS_TYPE_PENDING_PAYMENT => 'Pending Payment',
         self::STATUS_TYPE_PENDING_APPROVAL => 'Pending Approval',
         self::STATUS_TYPE_APPROVED => 'Approved',
+        self::STATUS_TYPE_CANCELLED => 'Canceled',
     ];
 
     protected $fillable = [
@@ -25,4 +28,9 @@ class Reservation extends Model
         'remark',
         'status',
     ];
+
+    public function room()
+    {
+        return $this->hasOne(Room::class, 'id', 'room_id');
+    }
 }
