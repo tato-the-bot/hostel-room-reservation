@@ -27,6 +27,9 @@ Route::group(['middleware' => ['auth', 'role:student']], function() {
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('room', 'App\Http\Controllers\RoomController@index')->name('room');
     Route::get('room/index', 'App\Http\Controllers\RoomController@index')->name('room-index');
+    Route::get('room/view/{roomId}', 'App\Http\Controllers\RoomController@view')->name('room-view');
+    Route::post('room/book/{roomId}', 'App\Http\Controllers\RoomController@book')->name('room-book');
+    
     Route::get('reservation', 'App\Http\Controllers\ReservationController@index')->name('reservation');
 });
 

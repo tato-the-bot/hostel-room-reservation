@@ -19,16 +19,16 @@ and open the template in the editor.
             <hr style="width:90%;border-top: 2px groove #8c8c8c;">
         </div>
 
-        <div class="container">
+        <div class="container pb-4">
             <div class="row">
                 @foreach ($rooms as $room)
                 <div class="col-3">
                     <div class="card" style="width: 18rem;">
                         <img src="{{ $room->image }}" height="250" width="250" class="card-img-top" >
                         <div class="card-body">
-                            <h5 class="card-title">{{ \App\Models\Room::ROOM_TYPE_LABEL[$room->room_type] }}</h5>
+                            <h5 class="card-title">{{ $room->room_title }}</h5>
                             <p class="card-text">{{ Str::limit($room->room_desc, 100, ' (...)'); }} </p>
-                            <a href="#" class="btn btn-primary">View Room</a>
+                            <a href="{{ route('room-view', $room->id) }}" class="btn btn-primary">View Room</a>
                         </div>
                     </div>
                 </div>
