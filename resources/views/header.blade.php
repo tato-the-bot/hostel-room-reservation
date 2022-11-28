@@ -207,7 +207,15 @@
 
                 @if (Auth::user())
                 <li><a href="profile.php">Profile</a></li>
+
+                @if (Auth::user()->role == \App\Models\User::USER_STUDENT_ROLE)
                 <li><a href="{{ route('reservation-index') }}">Reservations</a></li>
+                @elseif (Auth::user()->role == \App\Models\User::USER_AGENT_ROLE)
+                <li><a href="{{ route('agent.dashboard') }}">Agent Dashboard</a></li>
+                @elseif (Auth::user()->role == \App\Models\User::USER_ADMIN_ROLE)
+                <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                @endif
+
                 <li><a href="{{ route('logout') }}">Logout</a></li>
                 @else
                 <li><a href="{{ route('login') }}">Login</a></li>
