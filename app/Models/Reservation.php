@@ -10,6 +10,12 @@ class Reservation extends Model
     const STATUS_TYPE_PENDING_APPROVAL = 1;
     const STATUS_TYPE_APPROVED = 2;
 
+    const STATUS_LABEL = [
+        self::STATUS_TYPE_PENDING_PAYMENT => 'Pending Payment',
+        self::STATUS_TYPE_PENDING_APPROVAL => 'Pending Approval',
+        self::STATUS_TYPE_APPROVED => 'Approved',
+    ];
+
     protected $fillable = [
         'user_id',
         'room_id',

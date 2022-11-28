@@ -14,7 +14,6 @@ class ReservationController extends Controller
 {
     public function index(Request $request)
     {   
-        
         $reservations = Reservation::where('user_id', Auth::user()->id)
             ->get();
 

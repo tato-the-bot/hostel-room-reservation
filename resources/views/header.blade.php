@@ -204,9 +204,10 @@
                 <li><a href="aboutUs.php">About Us</a></li>
                 <li><a href="{{ route('room-index') }}">Room</a></li>
                 <li><a href="gallery.php">Gallery</a></li>
-                <li><a href="profile.php">Profile</a></li>
 
                 @if (Auth::user())
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="{{ route('reservation-index') }}">Reservations</a></li>
                 <li><a href="{{ route('logout') }}">Logout</a></li>
                 @else
                 <li><a href="{{ route('login') }}">Login</a></li>
