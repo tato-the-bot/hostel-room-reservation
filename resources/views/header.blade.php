@@ -202,18 +202,16 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="aboutUs.php">About Us</a></li>
-                <li><a href="{{ route('room-index') }}">Room</a></li>
                 <li><a href="gallery.php">Gallery</a></li>
 
                 @if (Auth::user())
                 <li><a href="profile.php">Profile</a></li>
 
                 @if (Auth::user()->role == \App\Models\User::USER_STUDENT_ROLE)
+                <li><a href="{{ route('room-index') }}">Rooms</a></li>
                 <li><a href="{{ route('reservation-index') }}">Reservations</a></li>
                 @elseif (Auth::user()->role == \App\Models\User::USER_AGENT_ROLE)
-                <li><a href="{{ route('agent.dashboard') }}">Agent Dashboard</a></li>
-                @elseif (Auth::user()->role == \App\Models\User::USER_ADMIN_ROLE)
-                <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                <li><a href="{{ route('agent.room-index') }}">Rooms</a></li>
                 @endif
 
                 <li><a href="{{ route('logout') }}">Logout</a></li>
