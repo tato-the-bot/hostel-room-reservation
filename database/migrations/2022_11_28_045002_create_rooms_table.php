@@ -17,6 +17,7 @@ class CreateRoomsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('room_type');
+            $table->string('room_title');
             $table->longText('room_desc')->nullable();
             $table->double('monthly_rental', 8, 2);
             $table->double('deposit', 8, 2);
