@@ -26,7 +26,7 @@ class LoginController extends Controller
 
                 switch ($role) {
                     case User::USER_STUDENT_ROLE:
-                        return redirect()->route('dashboard');
+                        return redirect()->route('room');
                         break;
                     case User::USER_AGENT_ROLE:
                         return redirect()->route('agent.dashboard');
