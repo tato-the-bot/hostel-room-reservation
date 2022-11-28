@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth', 'role:student']], function() {
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('room', 'App\Http\Controllers\RoomController@index')->name('room');
     Route::get('room/index', 'App\Http\Controllers\RoomController@index')->name('room-index');
+    Route::get('reservation', 'App\Http\Controllers\ReservationController@index')->name('reservation');
 });
 
 // Agent routes

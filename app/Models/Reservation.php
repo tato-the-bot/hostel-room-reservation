@@ -10,6 +10,7 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
+        'transaction_id',
         'contract_start_date',
         'contract_end_date',
         'remark',
