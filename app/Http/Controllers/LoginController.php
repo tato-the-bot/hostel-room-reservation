@@ -26,13 +26,13 @@ class LoginController extends Controller
 
                 switch ($role) {
                     case User::USER_STUDENT_ROLE:
-                        return redirect()->route('room');
+                        return redirect()->route('home');
                         break;
                     case User::USER_AGENT_ROLE:
-                        return redirect()->route('agent.dashboard');
+                        return redirect()->route('home');
                         break;
                     case User::USER_ADMIN_ROLE:
-                        return redirect()->route('admin.dashboard');
+                        return redirect()->route('home');
                         break;
                 }
             }

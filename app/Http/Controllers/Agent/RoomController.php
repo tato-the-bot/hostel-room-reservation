@@ -43,9 +43,13 @@ class RoomController extends Controller
                 dd($validator->errors());
             }
 
-            $imageName = time().'.'.$request->image->extension();  
-            $request->image->move(public_path('images'), $imageName);
-            $imgURL = '/images/'.$imageName;
+            if($request->image != NULL){
+                $imageName = time().'.'.$request->image->extension();  
+                $request->image->move(public_path('images'), $imageName);
+                $imgURL = '/images/'.$imageName;
+            }else{
+                $imgURL = null;
+            }
      
             $room = Room:: where('user_id', Auth::user()->id)
                     ->where('id', $roomId)
@@ -108,10 +112,14 @@ class RoomController extends Controller
                 dd($validator->errors());
             }
 
-            $imageName = time().'.'.$request->image->extension();  
-            $request->image->move(public_path('images'), $imageName);
-            $imgURL = '/images/'.$imageName;
-            
+            if($request->image != NULL){
+                $imageName = time().'.'.$request->image->extension();  
+                $request->image->move(public_path('images'), $imageName);
+                $imgURL = '/images/'.$imageName;
+            }else{
+                $imgURL = null;
+            }
+
             $room = new Room;
             $room->room_title = $request->get('room_title');
             $room->room_type = $request->get('room_type');

@@ -86,7 +86,11 @@ and open the template in the editor.
                         <td>
                             @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_PENDING_APPROVAL)
                             <a href="{{ route('reservation-update', $reservation->id) }}" class="btn btn-primary">Update Reservation</a>
+                            @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_APPROVED)
                             <a href="{{ route('reservation-pay', $reservation->id) }}" class="btn btn-secondary">Make Payment</a>
+                            @else
+                            <a href="{{ route('reservation-pay', $reservation->id) }}" class="btn btn-secondary disabled">Make Payment</a>
+                            @endif
                             <a href="{{ route('reservation-cancel', $reservation->id) }}" class="btn btn-warning">Cancel</a>
                             @endif
                         </td>
