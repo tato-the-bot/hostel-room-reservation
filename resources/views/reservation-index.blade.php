@@ -27,6 +27,12 @@ and open the template in the editor.
                             Transaction ID
                         </th>
                         <th>
+                            Room ID                        
+                        </th>
+                        <th>
+                            Room Type                        
+                        </th>
+                        <th>
                             Contract Start Date
                         </th>
                         <th>
@@ -48,6 +54,18 @@ and open the template in the editor.
                     <tr>
                         <td>
                             {{ $reservation->transaction_id }}
+                        </td>
+                        <td>
+                            {{ $reservation->room_id }}
+                        </td>
+                        <td>
+                            @if ($reservation->room->room_type == 'big_room')
+                                Big Room
+                            @elseif ($reservation->room->room_type == 'medium_room')
+                                Medium Room
+                            @elseif ($reservation->room->room_type == 'single_room')
+                                Single Room
+                            @endif
                         </td>
                         <td>
                             {{ $reservation->contract_start_date }}

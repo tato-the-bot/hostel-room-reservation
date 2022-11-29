@@ -22,7 +22,7 @@ and open the template in the editor.
         <div class="container pb-4">
             <div class="row">
                 @foreach ($rooms as $room)
-                <div class="col-3">
+                <div class="col-3 mt-4">
                     <div class="card" style="width: 18rem;">
                         <img src="{{ $room->image }}" height="250" width="250" class="card-img-top" >
                         <div class="card-body">
