@@ -24,7 +24,7 @@ class ReservationController extends Controller
     public function update(Request $request, $reservationId)
     {   
         $reservation = Reservation::where('id', $reservationId)
-            ->where('status', Reservation::STATUS_TYPE_PENDING_PAYMENT)
+            ->where('status', Reservation::STATUS_TYPE_PENDING_APPROVAL)
             ->first();
 
         if (empty($reservation)) {
@@ -63,7 +63,7 @@ class ReservationController extends Controller
     public function cancel(Request $request, $reservationId)
     {   
         $reservation = Reservation::where('id', $reservationId)
-            ->where('status', Reservation::STATUS_TYPE_PENDING_PAYMENT)
+            ->where('status', Reservation::STATUS_TYPE_PENDING_APPROVAL)
             ->first();
 
         $reservation->status = Reservation::STATUS_TYPE_CANCELLED;

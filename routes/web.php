@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth', 'role:student']], function() {
     Route::get('reservation/cancel/{reservationId}', 'App\Http\Controllers\ReservationController@cancel')->name('reservation-cancel');
     Route::get('reservation/pay/{reservationId}', 'App\Http\Controllers\ReservationController@pay')->name('reservation-pay');
     
-    Route::get('reservation', 'App\Http\Controllers\ReservationController@index')->name('reservation');
+    // Route::get('reservation', 'App\Http\Controllers\ReservationController@index')->name('reservation');
 });
 
 // Agent routes
@@ -51,6 +51,10 @@ Route::group(['middleware' => ['auth', 'role:agent'], 'as' => 'agent.', 'prefix'
 
     Route::get('room/create', 'App\Http\Controllers\Agent\RoomController@create')->name('room-create');
     Route::post('room/create', 'App\Http\Controllers\Agent\RoomController@create')->name('room-create');
+
+    Route::get('reservation/index', 'App\Http\Controllers\Agent\ReservationController@index')->name('reservation-index');
+    Route::get('reservation/approve/{reservationId}', 'App\Http\Controllers\Agent\ReservationController@approve')->name('reservation-approve');
+    Route::get('reservation/reject/{reservationId}', 'App\Http\Controllers\Agent\ReservationController@reject')->name('reservation-reject');
 });
 
 // Admin routes

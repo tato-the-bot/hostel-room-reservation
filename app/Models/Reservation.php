@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Room;
 
 class Reservation extends Model
-{
-    const STATUS_TYPE_PENDING_PAYMENT = 0;
-    const STATUS_TYPE_PENDING_APPROVAL = 1;
-    const STATUS_TYPE_APPROVED = 2;
+{ 
+    const STATUS_TYPE_PENDING_APPROVAL = 0;
+    const STATUS_TYPE_APPROVED = 1;
+    const STATUS_TYPE_PAID_DEPOSIT = 2;
     const STATUS_TYPE_CANCELLED = 3;
+    const STATUS_TYPE_REJECTED = 4;
 
     const STATUS_LABEL = [
-        self::STATUS_TYPE_PENDING_PAYMENT => 'Pending Payment',
         self::STATUS_TYPE_PENDING_APPROVAL => 'Pending Approval',
         self::STATUS_TYPE_APPROVED => 'Approved',
+        self::STATUS_TYPE_PAID_DEPOSIT => 'Paid Deposit',
         self::STATUS_TYPE_CANCELLED => 'Canceled',
+        self::STATUS_TYPE_REJECTED => 'Rejected',
     ];
 
     protected $fillable = [
