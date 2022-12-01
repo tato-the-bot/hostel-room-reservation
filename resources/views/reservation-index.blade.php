@@ -59,12 +59,16 @@ and open the template in the editor.
                             {{ $reservation->room_id }}
                         </td>
                         <td>
-                            @if ($reservation->room->room_type == 'big_room')
-                                Big Room
-                            @elseif ($reservation->room->room_type == 'medium_room')
-                                Medium Room
-                            @elseif ($reservation->room->room_type == 'single_room')
-                                Single Room
+                            @if (!empty($reservation->room))
+                                @if ($reservation->room->room_type == 'big_room')
+                                    Big Room
+                                @elseif ($reservation->room->room_type == 'medium_room')
+                                    Medium Room
+                                @elseif ($reservation->room->room_type == 'single_room')
+                                    Single Room
+                                @endif
+                            @else
+                                -
                             @endif
                         </td>
                         <td>
@@ -77,21 +81,29 @@ and open the template in the editor.
                             {{ $reservation->remark }}
                         </td>
                         <td>
-                            @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_APPROVED)
-                            <span class="badge text-bg-success">{{ \App\Models\Reservation::STATUS_LABEL[$reservation->status] }}</span>
+                            @if (empty($reservation->room))
+                                <span class="badge text-bg-warning">Room Deleted</span>
                             @else
-                            <span class="badge text-bg-warning">{{ \App\Models\Reservation::STATUS_LABEL[$reservation->status] }}</span>
+                                @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_APPROVED)
+                                <span class="badge text-bg-success">{{ \App\Models\Reservation::STATUS_LABEL[$reservation->status] }}</span>
+                                @else
+                                <span class="badge text-bg-warning">{{ \App\Models\Reservation::STATUS_LABEL[$reservation->status] }}</span>
+                                @endif
                             @endif
                         </td>
                         <td>
-                            @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_PENDING_APPROVAL)
-                            <a href="{{ route('reservation-update', $reservation->id) }}" class="btn btn-primary">Update Reservation</a>
-                            @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_APPROVED)
-                            <a href="{{ route('reservation-pay', $reservation->id) }}" class="btn btn-secondary">Make Payment</a>
+                            @if (empty($reservation->room))
+                                
                             @else
-                            <a href="{{ route('reservation-pay', $reservation->id) }}" class="btn btn-secondary disabled">Make Payment</a>
-                            @endif
-                            <a href="{{ route('reservation-cancel', $reservation->id) }}" class="btn btn-warning">Cancel</a>
+                                @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_PENDING_APPROVAL)
+                                <a href="{{ route('reservation-update', $reservation->id) }}" class="btn btn-primary">Update Reservation</a>
+                                @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_APPROVED)
+                                <a href="{{ route('reservation-pay', $reservation->id) }}" class="btn btn-secondary">Make Payment</a>
+                                @else
+                                <a href="{{ route('reservation-pay', $reservation->id) }}" class="btn btn-secondary disabled">Make Payment</a>
+                                @endif
+                                <a href="{{ route('reservation-cancel', $reservation->id) }}" class="btn btn-warning">Cancel</a>
+                                @endif
                             @endif
                         </td>
                     </tr>
