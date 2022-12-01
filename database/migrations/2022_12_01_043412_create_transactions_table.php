@@ -22,7 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->string('invoice_no');
             $table->string('pay_method');
             $table->double('amount', 8, 2);
-            $table->integer('status')->default(Transaction::STATUS_TYPE_PAYMENT_IN_PROGRESS);
+            $table->integer('status')->default(Transaction::PAYMENT_TYPE_IN_PROGRESS);
             $table->timestamps();
 
             $table->foreign('reservation_id')->references('id')->on('reservations');
