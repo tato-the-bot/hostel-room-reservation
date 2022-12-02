@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Reservations</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -79,9 +80,19 @@ and open the template in the editor.
                         </td>
                         <td>
                             <a href="{{ route('agent.room-update', $room->id) }}">Edit</a>
-                            <a href="{{ route('agent.room-delete', $room->id) }}">Delete</a>
+                            <a href="{{ route('agent.room-delete', $room->id) }}" id="delete">Delete</a>
                         </td>
                     </tr>
+                    <script>
+                        $('#delete').click(function(e) {
+                            e.preventDefault();
+                            if (confirm('Are you sure you want to delete the room?')) {
+                                location.href = "{{ route('agent.room-delete', $room->id) }}";
+                            } else {
+                                return false;
+                            }
+                        });
+                    </script>
                     @endforeach
                 </tbody>
             </table>

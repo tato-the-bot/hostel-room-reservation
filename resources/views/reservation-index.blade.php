@@ -8,6 +8,8 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Reservations</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     </head>
 
     <body>
@@ -102,11 +104,21 @@ and open the template in the editor.
                                 @else
                                 <a href="{{ route('reservation-pay', $reservation->id) }}" class="btn btn-secondary disabled">Make Payment</a>
                                 @endif
-                                <a href="{{ route('reservation-cancel', $reservation->id) }}" class="btn btn-warning">Cancel</a>
+                                <a id="cancel" href="{{ route('reservation-cancel', $reservation->id) }}" class="btn btn-warning">Cancel</a>
                                 @endif
                             @endif
                         </td>
                     </tr>
+                    <script>
+                        $('#cancel').click(function(e) {
+                            e.preventDefault();
+                            if (confirm('Are you sure you want to cancel the reservation?')) {
+                                location.href = "{{ route('reservation-cancel', $reservation->id) }}";
+                            } else {
+                                return false;
+                            }
+                        });
+                    </script>
                     @endforeach
                 </tbody>
             </table>
@@ -115,3 +127,13 @@ and open the template in the editor.
     
     @include('footer')
 </html>
+<script src="https://www.paypal.com/sdk/js?client-id=CLIENT_ID"></script>
+<script>
+    function warning(){
+        if(confirm("Are you sure you want to cancel the reservation?")){
+            
+        }else{
+
+        }
+    }
+</script>
