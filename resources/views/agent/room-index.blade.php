@@ -83,7 +83,8 @@ and open the template in the editor.
                             <a href="{{ route('agent.room-delete', $room->id) }}" id="delete">Delete</a>
                         </td>
                     </tr>
-                    <script>
+                    @endforeach
+                     <script>
                         $('#delete').click(function(e) {
                             e.preventDefault();
                             if (confirm('Are you sure you want to delete the room?')) {
@@ -93,7 +94,6 @@ and open the template in the editor.
                             }
                         });
                     </script>
-                    @endforeach
                 </tbody>
             </table>
         </div>

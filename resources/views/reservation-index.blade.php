@@ -109,6 +109,7 @@ and open the template in the editor.
                             @endif
                         </td>
                     </tr>
+                    @endforeach
                     <script>
                         $('#cancel').click(function(e) {
                             e.preventDefault();
@@ -119,7 +120,6 @@ and open the template in the editor.
                             }
                         });
                     </script>
-                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -127,13 +127,3 @@ and open the template in the editor.
     
     @include('footer')
 </html>
-<script src="https://www.paypal.com/sdk/js?client-id=CLIENT_ID"></script>
-<script>
-    function warning(){
-        if(confirm("Are you sure you want to cancel the reservation?")){
-            
-        }else{
-
-        }
-    }
-</script>
