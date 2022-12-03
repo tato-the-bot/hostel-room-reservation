@@ -49,7 +49,7 @@ Route::post('room/rating/{roomId}', 'App\Http\Controllers\RatingController@store
 Route::get('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
 Route::post('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
 
-// Student forget password page
+// Agent forget password page
 Route::get('agent/forget-password', 'App\Http\Controllers\Agent\LoginController@forgetPassword')->name('agent.login.forget-password');
 Route::post('agent/forget-password', 'App\Http\Controllers\Agent\LoginController@forgetPassword')->name('agent.login.forget-password');
 
@@ -73,6 +73,29 @@ Route::post('agent/register/otp', 'App\Http\Controllers\Agent\RegisterController
 // Admin login page
 Route::get('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
 Route::post('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
+
+// Agent forget password page
+Route::get('admin/forget-password', 'App\Http\Controllers\Admin\LoginController@forgetPassword')->name('admin.login.forget-password');
+Route::post('admin/forget-password', 'App\Http\Controllers\Admin\LoginController@forgetPassword')->name('admin.login.forget-password');
+
+// admin reset password OTP page
+Route::get('admin/password-reset-otp', 'App\Http\Controllers\Admin\LoginController@passwordResetOtp')->name('admin.login.reset-password-otp');
+Route::post('admin/password-reset-otp', 'App\Http\Controllers\Admin\LoginController@passwordResetOtp')->name('admin.login.reset-password-otp');
+
+// admin reset password page
+Route::get('admin/password-reset', 'App\Http\Controllers\Admin\LoginController@passwordReset')->name('admin.login.reset-password');
+Route::post('admin/password-reset', 'App\Http\Controllers\Admin\LoginController@passwordReset')->name('admin.login.reset-password');
+
+// admin register page
+Route::get('admin/register', 'App\Http\Controllers\Admin\RegisterController@register')->name('admin.register');
+Route::post('admin/register', 'App\Http\Controllers\Admin\RegisterController@register')->name('admin.register');
+
+// admin OTP page
+Route::get('admin/register/otp', 'App\Http\Controllers\Admin\RegisterController@registerOtp')->name('admin.register.otp');
+Route::post('admin/register/otp', 'App\Http\Controllers\Admin\RegisterController@registerOtp')->name('admin.register.otp');
+
+
+
 
 // Choose login page
 Route::get('login', 'App\Http\Controllers\LoginController@selectLogin')->name('login');

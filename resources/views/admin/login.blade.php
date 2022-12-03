@@ -39,10 +39,14 @@
                 <input type="checkbox" onclick="myFunction()">Show password
 
                 <div class ="forget_pwd" style="margin-top: -30px;">
-                    <a href ="{{ route('forget-password') }}" id="forget-line">Forgot password?</a>
+                    <a href ="{{ route('admin.login.forget-password') }}" id="forget-line">Forgot password?</a>
                 </div> 
 
                 <button type ="submit" class="btn" name="login">Log In</button>
+
+                <div class ="stmt"> 
+                    <a>Don't have an account yet? </a> <a href ="{{ route('admin.register') }}" class="click">Sign up now!</a><br>
+                </div>
             </div>
         </form>
         <script>

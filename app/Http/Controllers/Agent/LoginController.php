@@ -94,7 +94,7 @@ class LoginController extends Controller
         return redirect()->route('home');
     }
 
-        /**
+    /**
      * This method handles the forget password request.
      */
     public function forgetPassword(Request $request)
