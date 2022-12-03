@@ -21,7 +21,8 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        if (Auth::guard('web_student')->user()) {
+        // If user already logged in as any account, redirect them back to home page.
+        if (Auth::guard('web_student')->user() || Auth::guard('web_agent')->user() || Auth::guard('web_admin')->user() ) {
             return redirect()->route('home');
         }
 
@@ -82,10 +83,5 @@ class LoginController extends Controller
     
         // Redirect user to home page.
         return redirect()->route('home');
-    }
-
-    protected function guard()
-    {
-        return Auth::guard('web_student');
     }
 }

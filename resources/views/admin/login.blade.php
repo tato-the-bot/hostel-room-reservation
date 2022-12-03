@@ -35,11 +35,6 @@
                 </div> 
 
                 <button type ="submit" class="btn" name="login">Log In</button>
-                
-                <div class ="stmt"> 
-                    <a>Don't have an account yet? </a> <a href ="{{ route('sign-up') }}" class="click">Sign up now!</a><br>
-                </div>
-                
             </div>
         </form>
         <script>

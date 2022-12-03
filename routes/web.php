@@ -21,8 +21,14 @@ Route::get('/', function () {
 Route::get('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
 Route::post('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
 
+Route::get('student/register', 'App\Http\Controllers\RegisterController@register')->name('student.register');
+Route::post('student/register', 'App\Http\Controllers\RegisterController@register')->name('student.register');
+
 Route::get('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
 Route::post('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
+
+Route::get('agent/register', 'App\Http\Controllers\Agent\RegisterController@register')->name('agent.register');
+Route::post('agent/register', 'App\Http\Controllers\Agent\RegisterController@register')->name('agent.register');
 
 Route::get('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
 Route::post('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
@@ -33,11 +39,6 @@ Route::get('logout', 'App\Http\Controllers\LoginController@logout')->name('logou
 Route::get('forgot_password', function () {
     dd('placeholder forgot password');
 })->name('forget-password');
-
-
-Route::get('sign_up', function () {
-    dd('placeholder sign up');
-})->name('sign-up');
 
 // Student routes
 Route::group(['middleware' => ['auth:web_student']], function() {
