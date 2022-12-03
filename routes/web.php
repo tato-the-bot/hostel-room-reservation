@@ -25,6 +25,10 @@ Route::post('student/login', 'App\Http\Controllers\LoginController@login')->name
 Route::get('student/register', 'App\Http\Controllers\RegisterController@register')->name('student.register');
 Route::post('student/register', 'App\Http\Controllers\RegisterController@register')->name('student.register');
 
+// Student OTP page
+Route::get('student/register/otp', 'App\Http\Controllers\RegisterController@registerOtp')->name('student.register.otp');
+Route::post('student/register/otp', 'App\Http\Controllers\RegisterController@registerOtp')->name('student.register.otp');
+
 // Agent login page
 Route::get('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
 Route::post('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
@@ -32,6 +36,10 @@ Route::post('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->
 // Agent register page
 Route::get('agent/register', 'App\Http\Controllers\Agent\RegisterController@register')->name('agent.register');
 Route::post('agent/register', 'App\Http\Controllers\Agent\RegisterController@register')->name('agent.register');
+
+// Student OTP page
+Route::get('agent/register/otp', 'App\Http\Controllers\Agent\RegisterController@registerOtp')->name('agent.register.otp');
+Route::post('agent/register/otp', 'App\Http\Controllers\Agent\RegisterController@registerOtp')->name('agent.register.otp');
 
 // Agent login page
 Route::get('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');

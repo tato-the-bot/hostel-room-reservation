@@ -25,6 +25,7 @@ class Student extends Authenticatable
         'password',
         'role',
         'status',
+        'otp_code',
     ];
 
     protected $hidden = [
