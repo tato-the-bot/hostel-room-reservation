@@ -123,7 +123,12 @@ class LoginController extends Controller
                 $passwordResetOtpEmail = new PasswordResetOtp;
                 $passwordResetOtpEmail->name = $student->name;
                 $passwordResetOtpEmail->otpCode = $student->otp_code;
-                Mail::to($student->email)->send($passwordResetOtpEmail);
+
+                try {
+                    Mail::to($student->email)->send($passwordResetOtpEmail);
+                } catch (\Exception $e) {
+                    // Do nothing, if email is not valid, it will not be sent out.
+                }
 
                 // Redirect to OTP Page
                 return redirect()->route('student.login.reset-password-otp'); 

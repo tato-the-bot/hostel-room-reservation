@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
 Route::post('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
 
-// Student login page
+// Student forget password page
 Route::get('student/forget-password', 'App\Http\Controllers\LoginController@forgetPassword')->name('student.login.forget-password');
 Route::post('student/forget-password', 'App\Http\Controllers\LoginController@forgetPassword')->name('student.login.forget-password');
 
@@ -33,9 +33,6 @@ Route::post('student/password-reset-otp', 'App\Http\Controllers\LoginController@
 Route::get('student/password-reset', 'App\Http\Controllers\LoginController@passwordReset')->name('student.login.reset-password');
 Route::post('student/password-reset', 'App\Http\Controllers\LoginController@passwordReset')->name('student.login.reset-password');
 
-
-
-
 // Student register page
 Route::get('student/register', 'App\Http\Controllers\RegisterController@register')->name('student.register');
 Route::post('student/register', 'App\Http\Controllers\RegisterController@register')->name('student.register');
@@ -44,19 +41,38 @@ Route::post('student/register', 'App\Http\Controllers\RegisterController@registe
 Route::get('student/register/otp', 'App\Http\Controllers\RegisterController@registerOtp')->name('student.register.otp');
 Route::post('student/register/otp', 'App\Http\Controllers\RegisterController@registerOtp')->name('student.register.otp');
 
+
+
 // Agent login page
 Route::get('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
 Route::post('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
+
+// Student forget password page
+Route::get('agent/forget-password', 'App\Http\Controllers\Agent\LoginController@forgetPassword')->name('agent.login.forget-password');
+Route::post('agent/forget-password', 'App\Http\Controllers\Agent\LoginController@forgetPassword')->name('agent.login.forget-password');
+
+// Agent reset password OTP page
+Route::get('agent/password-reset-otp', 'App\Http\Controllers\Agent\LoginController@passwordResetOtp')->name('agent.login.reset-password-otp');
+Route::post('agent/password-reset-otp', 'App\Http\Controllers\Agent\LoginController@passwordResetOtp')->name('agent.login.reset-password-otp');
+
+// Agent reset password page
+Route::get('agent/password-reset', 'App\Http\Controllers\Agent\LoginController@passwordReset')->name('agent.login.reset-password');
+Route::post('agent/password-reset', 'App\Http\Controllers\Agent\LoginController@passwordReset')->name('agent.login.reset-password');
 
 // Agent register page
 Route::get('agent/register', 'App\Http\Controllers\Agent\RegisterController@register')->name('agent.register');
 Route::post('agent/register', 'App\Http\Controllers\Agent\RegisterController@register')->name('agent.register');
 
-// Student OTP page
+// Agent OTP page
 Route::get('agent/register/otp', 'App\Http\Controllers\Agent\RegisterController@registerOtp')->name('agent.register.otp');
 Route::post('agent/register/otp', 'App\Http\Controllers\Agent\RegisterController@registerOtp')->name('agent.register.otp');
 
-// Agent login page
+
+
+
+
+
+// Admin login page
 Route::get('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
 Route::post('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
 

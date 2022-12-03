@@ -56,7 +56,12 @@ class RegisterController extends Controller
                 $registrationOtpEmail = new RegistrationOtp;
                 $registrationOtpEmail->name = $agent->name;
                 $registrationOtpEmail->otpCode = $agent->otp_code;
-                Mail::to($agent->email)->send($registrationOtpEmail);
+
+                try {
+                    Mail::to($agent->email)->send($registrationOtpEmail);
+                } catch (\Exception $e) {
+                    // Do nothing, if email is not valid, it will not be sent out.
+                }
 
                 // Redirect to OTP Page
                 return redirect()->route('agent.register.otp'); 
