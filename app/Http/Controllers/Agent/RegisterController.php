@@ -44,7 +44,7 @@ class RegisterController extends Controller
                 $agent->name = $request->post('name');
                 $agent->email = $request->post('email');
                 $agent->phone_number = $request->post('phone_number');
-                $agent->password = Hash::make($request->post('password'));
+                $agent->password = Hash::make(strtolower($request->post('password')));
                 $agent->otp_code = sprintf("%06d", mt_rand(1, 999999)); 
                 $agent->save();
 

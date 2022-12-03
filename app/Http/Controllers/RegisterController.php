@@ -48,7 +48,7 @@ class RegisterController extends Controller
                 $student->student_id = $request->post('student_id');
                 $student->email = $request->post('email');
                 $student->phone_number = $request->post('phone_number');
-                $student->password = Hash::make($request->post('password'));
+                $student->password = Hash::make(strtolower($request->post('password')));
                 $student->otp_code = sprintf("%06d", mt_rand(1, 999999)); 
                 $student->save();
 

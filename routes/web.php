@@ -21,6 +21,21 @@ Route::get('/', function () {
 Route::get('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
 Route::post('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
 
+// Student login page
+Route::get('student/forget-password', 'App\Http\Controllers\LoginController@forgetPassword')->name('student.login.forget-password');
+Route::post('student/forget-password', 'App\Http\Controllers\LoginController@forgetPassword')->name('student.login.forget-password');
+
+// Student reset password OTP page
+Route::get('student/password-reset-otp', 'App\Http\Controllers\LoginController@passwordResetOtp')->name('student.login.reset-password-otp');
+Route::post('student/password-reset-otp', 'App\Http\Controllers\LoginController@passwordResetOtp')->name('student.login.reset-password-otp');
+
+// Student reset password page
+Route::get('student/password-reset', 'App\Http\Controllers\LoginController@passwordReset')->name('student.login.reset-password');
+Route::post('student/password-reset', 'App\Http\Controllers\LoginController@passwordReset')->name('student.login.reset-password');
+
+
+
+
 // Student register page
 Route::get('student/register', 'App\Http\Controllers\RegisterController@register')->name('student.register');
 Route::post('student/register', 'App\Http\Controllers\RegisterController@register')->name('student.register');
@@ -50,10 +65,6 @@ Route::get('login', 'App\Http\Controllers\LoginController@selectLogin')->name('l
 
 // Universal logout link
 Route::get('logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
-
-Route::get('forgot_password', function () {
-    dd('placeholder forgot password');
-})->name('forget-password');
 
 // Student routes
 Route::group(['middleware' => ['auth:web_student']], function() {
