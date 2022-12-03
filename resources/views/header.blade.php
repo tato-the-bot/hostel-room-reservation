@@ -204,15 +204,15 @@
                 <li><a href="aboutUs.php">About Us</a></li>
                 <li><a href="gallery.php">Gallery</a></li>
 
-                @if (Auth::user())
+                @if (Auth::guard('web_student')->user())
                 <li><a href="profile.php">Profile</a></li>
 
-                @if (Auth::user()->role == \App\Models\User::USER_STUDENT_ROLE)
-                <li><a href="{{ route('room-index') }}">Rooms</a></li>
-                <li><a href="{{ route('reservation-index') }}">Reservations</a></li>
-                @elseif (Auth::user()->role == \App\Models\User::USER_AGENT_ROLE)
-                <li><a href="{{ route('agent.room-index') }}">Rooms</a></li>
-                @endif
+                    @if (Auth::guard('web_student')->user())
+                    <li><a href="{{ route('room-index') }}">Rooms</a></li>
+                    <li><a href="{{ route('reservation-index') }}">Reservations</a></li>
+                    @elseif (Auth::guard('web_agent')->user())
+                    <li><a href="{{ route('agent.room-index') }}">Rooms</a></li>
+                    @endif
 
                 <li><a href="{{ route('logout') }}">Logout</a></li>
                 @else

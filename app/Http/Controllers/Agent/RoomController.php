@@ -13,7 +13,7 @@ class RoomController extends Controller
 {
     public function index(Request $request)
     {
-        $rooms = Room::where('user_id', Auth::user()->id)
+        $rooms = Room::where('user_id', Auth::guard('web_agent')->user()->id)
             ->get();
 
         return view('agent.room-index', [
@@ -51,7 +51,7 @@ class RoomController extends Controller
                 $imgURL = null;
             }
      
-            $room = Room:: where('user_id', Auth::user()->id)
+            $room = Room:: where('user_id', Auth::guard('web_agent')->user()->id)
                     ->where('id', $roomId)
                     ->first();
 
@@ -64,7 +64,7 @@ class RoomController extends Controller
             $room->remark = $request->get('remark');
 
             $room->status = 0;
-            $room->user_id = Auth::user()->id;
+            $room->user_id = guard('web_agent')->()->id;
     
             $room->save();
             
@@ -72,7 +72,7 @@ class RoomController extends Controller
         }
 
         
-        $room = Room:: where('user_id', Auth::user()->id)
+        $room = Room:: where('user_id', Auth::guard('web_agent')->user()->id)
             ->where('id', $roomId)
             ->firstOrFail();
 
@@ -84,7 +84,7 @@ class RoomController extends Controller
 
     public function delete(Request $request, $roomId)
     {
-        $rooms = Room::where('user_id', Auth::user()->id)
+        $rooms = Room::where('user_id', Auth::guard('web_agent')->user()->id)
             ->where('id', $roomId)
             ->delete();
 
@@ -130,7 +130,7 @@ class RoomController extends Controller
             $room->remark = $request->get('remark');
 
             $room->status = 0;
-            $room->user_id = Auth::user()->id;
+            $room->user_id = Auth::guard('web_agent')->user()->id;
     
             $room->save();
             

@@ -17,13 +17,21 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('login', 'App\Http\Controllers\LoginController@login')->name('login');
-Route::post('login', 'App\Http\Controllers\LoginController@login')->name('login');
+
+Route::get('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
+Route::post('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
+
+Route::get('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
+Route::post('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
+
+Route::get('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
+Route::post('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
+
+Route::get('login', 'App\Http\Controllers\LoginController@selectLogin')->name('login');
 Route::get('logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
 
-
 // Student routes
-Route::group(['middleware' => ['auth', 'role:student']], function() {
+Route::group(['middleware' => ['auth:web_student']], function() {
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('room', 'App\Http\Controllers\RoomController@index')->name('room');
     Route::get('room/index', 'App\Http\Controllers\RoomController@index')->name('room-index');

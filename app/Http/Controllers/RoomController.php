@@ -49,7 +49,7 @@ class RoomController extends Controller
         $reservation = new Reservation;
         $reservation->contract_start_date = $request->get('contract_start_date') . ' 00:00:00';
         $reservation->contract_end_date = date('Y-m-d', strtotime('+' . $request->get('duration') . ' months', strtotime($request->get('contract_start_date')))) . ' 23:59:49';
-        $reservation->user_id = Auth::user()->id;
+        $reservation->user_id = Auth::guard('web_student')->user()->id;
         $reservation->room_id = $room->id;
         $reservation->status = Reservation::STATUS_TYPE_PENDING_APPROVAL;
 

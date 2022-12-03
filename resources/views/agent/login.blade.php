@@ -19,7 +19,6 @@
     
     <body>
         <form action="{{ route('login') }}" method="POST">
-            {{-- @csrf is a security measure. This is verify that what post request sent to the server is coming from your page and not from other sources. --}}
             @csrf
             <div class ="login">
                 <a href="{{ route('home') }}"> 
@@ -27,7 +26,7 @@
                 </a>
                 <h2 class = "title">WELCOME!</h2>
                 
-                <input type="text" class="form_input" name="student_id" placeholder="Student ID" required><br><br>
+                <input type="text" class="form_input" name="student_id" placeholder="email" required><br><br>
                 <input type="password" class="form_input" name="password" id="password" placeholder="Password" required><br>
                 
                 <button type="submit" class="btn">Log In</button>
