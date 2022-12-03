@@ -9,7 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Reservations</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
+        <script src="https://www.paypal.com/sdk/js?client-id=AQ17c7S81QGW3sDfkocNtUKKKX4qbMgLTtuh5jn99sB4paqE71MdofBjzukZmhwz2TJDaDsDX1BPP4Ro&currency=MYR"></script>
     </head>
 
     <body>
@@ -26,10 +26,7 @@ and open the template in the editor.
                 <thead>
                     <tr>
                         <th>
-                            Transaction ID
-                        </th>
-                        <th>
-                            Room ID                        
+                            Room Name                        
                         </th>
                         <th>
                             Room Type                        
@@ -39,6 +36,12 @@ and open the template in the editor.
                         </th>
                         <th>
                             Contract End Date
+                        </th>
+                        <th>
+                            Deposit
+                        </th>
+                        <th>
+                            Monthly Rental
                         </th>
                         <th>
                             Remark
@@ -55,10 +58,11 @@ and open the template in the editor.
                     @foreach ($reservations as $reservation)
                     <tr>
                         <td>
-                            {{ $reservation->transaction_id }}
-                        </td>
-                        <td>
-                            {{ $reservation->room_id }}
+                            @if (!empty($reservation->room))
+                                {{ $reservation->room->room_title }}
+                            @else
+                                -
+                            @endif
                         </td>
                         <td>
                             @if (!empty($reservation->room))
@@ -80,6 +84,20 @@ and open the template in the editor.
                             {{ $reservation->contract_end_date }}
                         </td>
                         <td>
+                            @if (!empty($reservation->room))
+                                RM {{ $reservation->room->deposit }} 
+                            @else
+                                -
+                            @endif
+                        </td>
+                        <td>
+                            @if (!empty($reservation->room))
+                                RM {{ $reservation->room->monthly_rental }} 
+                            @else
+                                -
+                            @endif
+                        </td>
+                        <td>
                             {{ $reservation->remark }}
                         </td>
                         <td>
@@ -98,13 +116,47 @@ and open the template in the editor.
                                 
                             @else
                                 @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_PENDING_APPROVAL)
-                                <a href="{{ route('reservation-update', $reservation->id) }}" class="btn btn-primary">Update Reservation</a>
-                                @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_APPROVED)
-                                <a href="{{ route('reservation-pay', $reservation->id) }}" class="btn btn-secondary">Make Payment</a>
-                                @else
-                                <a href="{{ route('reservation-pay', $reservation->id) }}" class="btn btn-secondary disabled">Make Payment</a>
-                                @endif
-                                <a id="cancel" href="{{ route('reservation-cancel', $reservation->id) }}" class="btn btn-warning">Cancel</a>
+                                    <a href="{{ route('reservation-update', $reservation->id) }}" class="btn btn-primary">Update</a>
+
+
+                                @elseif ($reservation->status == \App\Models\Reservation::STATUS_TYPE_APPROVED)
+                                    <div id="paypal-reservation-pay-{{$reservation->id}}"></div>
+
+                                    <form id="paypal-transaction-{{$reservation->id}}" action="{{ route('reservation-pay', $reservation->id) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" id="paypal-transaction-{{$reservation->id}}-transaction-no" name="transaction_no">
+                                        <input type="hidden" id="paypal-transaction-{{$reservation->id}}-amount" name="amount">
+                                    </form>
+
+                                    <script>
+                                    paypal.Buttons({
+                                        fundingSource: paypal.FUNDING.PAYPAL,
+                                        createOrder: (data, actions) => {
+                                        return actions.order.create({
+                                            purchase_units: [{
+                                                amount: {
+                                                    value: {{$reservation->room->deposit}} // Can also reference a variable or function
+                                                }
+                                            }]
+                                        });
+                                        },
+                                        // Finalize the transaction after payer approval
+                                        onApprove: (data, actions) => {
+                                        return actions.order.capture().then(function(orderData) {
+                                            const transaction = orderData.purchase_units[0].payments.captures[0];
+                                            console.log(transaction);
+
+                                            document.getElementById("paypal-transaction-{{$reservation->id}}-transaction-no").value = transaction.id;
+                                            document.getElementById("paypal-transaction-{{$reservation->id}}-amount").value = transaction.amount.value;
+                                            document.getElementById("paypal-transaction-{{$reservation->id}}").submit();
+                                        });
+                                        }
+                                    }).render('#paypal-reservation-pay-{{$reservation->id}}');
+                                    </script>
+
+                                    <a id="cancel" href="{{ route('reservation-cancel', $reservation->id) }}" class="btn btn-warning">Cancel</a>
+                                @elseif ($reservation->status == \App\Models\Reservation::STATUS_TYPE_PAID_DEPOSIT)
+                                    <a target="popup" onclick="window.open('{{ route('transaction-invoice', $reservation->transaction_id) }}', 'newwindow', 'width=1000,height=500'); return false;" class="btn btn-warning">Invoice</a>
                                 @endif
                             @endif
                         </td>

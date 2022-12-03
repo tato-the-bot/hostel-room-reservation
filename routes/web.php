@@ -70,10 +70,6 @@ Route::get('agent/register/otp', 'App\Http\Controllers\Agent\RegisterController@
 Route::post('agent/register/otp', 'App\Http\Controllers\Agent\RegisterController@registerOtp')->name('agent.register.otp');
 
 
-
-
-
-
 // Admin login page
 Route::get('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
 Route::post('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
@@ -96,9 +92,9 @@ Route::group(['middleware' => ['auth:web_student']], function() {
     Route::get('reservation/update/{reservationId}', 'App\Http\Controllers\ReservationController@update')->name('reservation-update');
     Route::post('reservation/update/{reservationId}', 'App\Http\Controllers\ReservationController@update')->name('reservation-update');
     Route::get('reservation/cancel/{reservationId}', 'App\Http\Controllers\ReservationController@cancel')->name('reservation-cancel');
-    Route::get('reservation/pay/{reservationId}', 'App\Http\Controllers\ReservationController@pay')->name('reservation-pay');
-    
-    // Route::get('reservation', 'App\Http\Controllers\ReservationController@index')->name('reservation');
+    Route::post('reservation/pay/{reservationId}', 'App\Http\Controllers\ReservationController@pay')->name('reservation-pay');
+
+    Route::get('transaction/invoice/{transactionId}', 'App\Http\Controllers\TransactionController@invoice')->name('transaction-invoice');
 });
 
 // Agent routes
