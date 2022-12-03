@@ -26,7 +26,15 @@
                 </a>
                 <h2 class = "title">WELCOME!</h2>
 
-                <input type="text" class="form_input" name="student_id" placeholder="Student ID" required><br><br>
+                @if(count($errors) > 0) 
+                <div class="alert alert-danger">
+                    @foreach ($errors as $error) 
+                        <div>{{$error[0]}}</div>
+                    @endforeach
+                </div>
+                @endif
+
+                <input type="text" class="form_input" name="student_id" placeholder="Student ID" value="{{ $student_id }}" required><br><br>
                 <input type="password" class="form_input" name="password" id="password" placeholder="Password" required><br>
                 <input type="checkbox" onclick="myFunction()">Show password
 

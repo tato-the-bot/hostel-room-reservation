@@ -55,12 +55,13 @@ class RegisterController extends Controller
 
         // Preserve the form field input so that user do not need to retype everything
         // when the validation has failed.
+        // This also passes some error messages to be displayed to the user.
         $viewData = [
             'name' => $request->post('name'),
             'student_id' => $request->post('student_id'),
             'email' => $request->post('email'),
             'phone_number' => $request->post('phone_number'),
-            'errors' => !empty($validator) ? $validator->errors() : [],
+            'errors' => !empty($validator) ? $validator->errors()->getMessages() : [],
         ];
 
         // Render the student register page.

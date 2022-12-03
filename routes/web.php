@@ -17,23 +17,30 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-
+// Student login page
 Route::get('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
 Route::post('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
 
+// Student register page
 Route::get('student/register', 'App\Http\Controllers\RegisterController@register')->name('student.register');
 Route::post('student/register', 'App\Http\Controllers\RegisterController@register')->name('student.register');
 
+// Agent login page
 Route::get('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
 Route::post('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
 
+// Agent register page
 Route::get('agent/register', 'App\Http\Controllers\Agent\RegisterController@register')->name('agent.register');
 Route::post('agent/register', 'App\Http\Controllers\Agent\RegisterController@register')->name('agent.register');
 
+// Agent login page
 Route::get('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
 Route::post('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->name('admin.login');
 
+// Choose login page
 Route::get('login', 'App\Http\Controllers\LoginController@selectLogin')->name('login');
+
+// Universal logout link
 Route::get('logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
 
 Route::get('forgot_password', function () {

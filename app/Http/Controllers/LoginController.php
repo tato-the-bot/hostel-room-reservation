@@ -26,6 +26,8 @@ class LoginController extends Controller
             return redirect()->route('home');
         }
 
+        $errors = [];
+
         // If this is a post request, try to login the user.
         if ($request->isMethod('POST')) {
 
@@ -39,34 +41,43 @@ class LoginController extends Controller
                 ]
             );
 
-            // If validation fails, do something.
-            if ($validator->fails()) {
-                // Return to the login page with the error information.
-                return back()->withErrors($validator->errors());
+            // If validation pass, try login.
+            if (!$validator->fails()) {
+                // Retrieve the student ID and password from the post request.
+                $credentials = $request->only('student_id', 'password');
+
+                // Filter only user with status Active.
+                $credentials['status'] = Student::STATUS_ACTIVE;
+
+                // Attempt to login user using the students table.
+                if (Auth::guard('web_student')->attempt($credentials)) {
+                    // If success regenerate the session.
+                    Auth::guard('web_student')->getSession()->regenerate();
+                    // Redirect user to home. Process ends here.
+                    return redirect()->route('home');
+                }
+
+                $errors[] = ['The provided credentials do not match our records.'];
             }
-
-            // Retrieve the student ID and password from the post request.
-            $credentials = $request->only('student_id', 'password');
-
-            // Filter only user with status Active.
-            $credentials['status'] = Student::STATUS_ACTIVE;
-
-            // Attempt to login user using the students table.
-            if (Auth::guard('web_student')->attempt($credentials)) {
-                // If success regenerate the session.
-                Auth::guard('web_student')->getSession()->regenerate();
-                // Redirect user to home. Process ends here.
-                return redirect()->route('home');
-            }
-
-            // If login failed, return with the error.
-            return back()->withErrors([
-                'student_id' => 'The provided credentials do not match our records.',
-            ]);
+           
         }
 
+        // Merge all error messages so that we can display all at once.
+        // We have error message from validation and from the authentication.
+        if (!empty($validator)) {
+            $errors = array_merge($errors, $validator->errors()->getMessages());
+        }
+
+        // Preserve the form field input so that user do not need to retype everything
+        // when the validation has failed.
+        // This also passes some error messages to be displayed to the user.
+        $viewData = [
+            'student_id' => $request->post('student_id'),
+            'errors' => $errors,
+        ];
+
         // Render the student login page.
-        return view('login');
+        return view('login', $viewData);
     }
     
     /**

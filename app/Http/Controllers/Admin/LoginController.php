@@ -20,6 +20,8 @@ class LoginController extends Controller
             return redirect()->route('home');
         }
 
+        $errors = [];
+
         // If this is a post request, try to login the user.
         if ($request->isMethod('POST')) {
 
@@ -35,34 +37,42 @@ class LoginController extends Controller
             );
 
             // If validation fails, do something.
-            if ($validator->fails()) {
-                // Return to the login page with the error information.
-                return back()->withErrors($validator->errors());
+            if (!$validator->fails()) {
+                // Retrieve the email and password from the post request.
+                $credentials = $request->only('email', 'password');
+
+                // Filter only user with status Active.
+                $credentials['status'] = Admin::STATUS_ACTIVE;
+
+                // Attempt to login user using the admins table.
+                if (Auth::guard('web_admin')->attempt($credentials)) {
+                    // If success regenerate the session.
+                    $request->session()->regenerate();
+                    
+                    // Redirect user to home. Process ends here.
+                    return redirect()->route('home');
+                }
+
+                $errors[] = ['The provided credentials do not match our records.'];
             }
-
-            // Retrieve the email and password from the post request.
-            $credentials = $request->only('email', 'password');
-
-            // Filter only user with status Active.
-            $credentials['status'] = Admin::STATUS_ACTIVE;
-
-            // Attempt to login user using the admins table.
-            if (Auth::guard('web_admin')->attempt($credentials)) {
-                // If success regenerate the session.
-                $request->session()->regenerate();
-                
-                // Redirect user to home. Process ends here.
-                return redirect()->route('home');
-            }
-
-            // If login failed, return with the error.
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ]);
         }
 
+        // Merge all error messages so that we can display all at once.
+        // We have error message from validation and from the authentication.
+        if (!empty($validator)) {
+            $errors = array_merge($errors, $validator->errors()->getMessages());
+        }
+
+        // Preserve the form field input so that user do not need to retype everything
+        // when the validation has failed.
+        // This also passes some error messages to be displayed to the user.
+        $viewData = [
+            'email' => $request->post('email'),
+            'errors' => $errors,
+        ];
+
         // Render the admin login page.
-        return view('admin.login');
+        return view('admin.login', $viewData);
     }
     
     /**

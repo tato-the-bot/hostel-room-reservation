@@ -23,10 +23,10 @@
                 <img src="{{ asset('images/logo.png') }}" alt="logo">
                 <h2 class ="title"> Sign Up Now! </h2>
 
-                @if($errors) 
-                <div class="alert alert-danger text-center">
-                    @foreach ($errors->getMessages() as $error) 
-                        {{$error[0]}}
+                @if(count($errors) > 0) 
+                <div class="alert alert-danger">
+                    @foreach ($errors as $error) 
+                        <div>{{$error[0]}}</div>
                     @endforeach
                 </div>
                 @endif
