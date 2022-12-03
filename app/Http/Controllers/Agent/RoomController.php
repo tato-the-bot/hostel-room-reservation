@@ -45,8 +45,8 @@ class RoomController extends Controller
 
             if($request->image != NULL){
                 $imageName = time().'.'.$request->image->extension();  
-                $request->image->move(public_path('images'), $imageName);
-                $imgURL = '/images/'.$imageName;
+                $request->image->move(public_path('storage/images'), $imageName);
+                $imgURL = '/storage/images/'.$imageName;
             }else{
                 $imgURL = null;
             }
@@ -114,8 +114,8 @@ class RoomController extends Controller
 
             if($request->image != NULL){
                 $imageName = time().'.'.$request->image->extension();  
-                $request->image->move(public_path('images'), $imageName);
-                $imgURL = '/images/'.$imageName;
+                $request->image->move(public_path('storage/images'), $imageName);
+                $imgURL = '/storage/images/'.$imageName;
             }else{
                 $imgURL = null;
             }
