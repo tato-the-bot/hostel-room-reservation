@@ -13,7 +13,7 @@ class ReservationController extends Controller
 {
     public function index(Request $request)
     {   
-        $reservations = Reservation::where('user_id', Auth::guard('web_student')->user()->id)
+        $reservations = Reservation::where('student_id', Auth::guard('web_student')->user()->id)
             ->get();
 
         return view('reservation-index', [

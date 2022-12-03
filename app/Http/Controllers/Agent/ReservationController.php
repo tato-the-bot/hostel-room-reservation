@@ -14,7 +14,7 @@ class ReservationController extends Controller
 {
     public function index(Request $request)
     {   
-        $reservations = Reservation::whereRelation('room', 'user_id', Auth::guard('web_agent')->user()->id)->get();
+        $reservations = Reservation::whereRelation('room', 'agent_id', Auth::guard('web_agent')->user()->id)->get();
     
         return view('agent.reservation-index', [
             'reservations' => $reservations

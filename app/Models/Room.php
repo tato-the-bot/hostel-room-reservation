@@ -36,5 +36,8 @@ class Room extends Model
         'image',
         'remark',
         'status',
+        'agent_id'
     ];
+
+    
 }
