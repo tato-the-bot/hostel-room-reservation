@@ -30,6 +30,15 @@ Route::post('admin/login', 'App\Http\Controllers\Admin\LoginController@login')->
 Route::get('login', 'App\Http\Controllers\LoginController@selectLogin')->name('login');
 Route::get('logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
 
+Route::get('forgot_password', function () {
+    dd('placeholder forgot password');
+})->name('forget-password');
+
+
+Route::get('sign_up', function () {
+    dd('placeholder sign up');
+})->name('sign-up');
+
 // Student routes
 Route::group(['middleware' => ['auth:web_student']], function() {
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
@@ -48,7 +57,7 @@ Route::group(['middleware' => ['auth:web_student']], function() {
 });
 
 // Agent routes
-Route::group(['middleware' => ['auth', 'role:agent'], 'as' => 'agent.', 'prefix' => 'agent'], function() {
+Route::group(['middleware' => ['auth:web_agent'], 'as' => 'agent.', 'prefix' => 'agent'], function() {
     Route::get('dashboard', 'App\Http\Controllers\Agent\DashboardController@index')->name('dashboard');
     Route::get('room/index', 'App\Http\Controllers\Agent\RoomController@index')->name('room-index');
 
@@ -66,6 +75,6 @@ Route::group(['middleware' => ['auth', 'role:agent'], 'as' => 'agent.', 'prefix'
 });
 
 // Admin routes
-Route::group(['middleware' => ['auth', 'role:admin'], 'as' => 'admin.', 'prefix' => 'admin'], function() {
+Route::group(['middleware' => ['auth:web_admin'], 'as' => 'admin.', 'prefix' => 'admin'], function() {
     Route::get('dashboard', 'App\Http\Controllers\Admin\DashboardController@index')->name('dashboard');
 });

@@ -64,7 +64,7 @@ class RoomController extends Controller
             $room->remark = $request->get('remark');
 
             $room->status = 0;
-            $room->user_id = guard('web_agent')->()->id;
+            $room->user_id = Auth::guard('web_agent')->user()->id;
     
             $room->save();
             

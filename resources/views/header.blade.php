@@ -204,7 +204,7 @@
                 <li><a href="aboutUs.php">About Us</a></li>
                 <li><a href="gallery.php">Gallery</a></li>
 
-                @if (Auth::guard('web_student')->user())
+                @if (Auth::guard('web_student')->user() || Auth::guard('web_agent')->user() || Auth::guard('web_admin')->user())
                 <li><a href="profile.php">Profile</a></li>
 
                     @if (Auth::guard('web_student')->user())
