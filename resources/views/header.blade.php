@@ -212,6 +212,7 @@
                     <li><a href="{{ route('reservation-index') }}">Reservations</a></li>
                     @elseif (Auth::guard('web_agent')->user())
                     <li><a href="{{ route('agent.room-index') }}">Rooms</a></li>
+                    <li><a href="{{ route('agent.reservation-index') }}">Reservations</a></li>
                     @endif
 
                 <li><a href="{{ route('logout') }}">Logout</a></li>
