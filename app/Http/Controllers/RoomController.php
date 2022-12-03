@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Room;
 use App\Models\Reservation;
+use App\Models\Rating;
 use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
@@ -25,8 +26,12 @@ class RoomController extends Controller
     {
         $room = Room::find($roomId);
 
+        $ratings = Rating::where('room_id', $roomId)
+            ->get();
+
         return view('room-view', [
-            'room' => $room
+            'room' => $room,
+            'ratings'=> $ratings,
         ]);
     }
 

@@ -41,6 +41,8 @@ Route::post('student/register', 'App\Http\Controllers\RegisterController@registe
 Route::get('student/register/otp', 'App\Http\Controllers\RegisterController@registerOtp')->name('student.register.otp');
 Route::post('student/register/otp', 'App\Http\Controllers\RegisterController@registerOtp')->name('student.register.otp');
 
+//Student Save rating 
+Route::post('room/rating/{roomId}', 'App\Http\Controllers\RatingController@store')->name('room-rating');
 
 
 // Agent login page
