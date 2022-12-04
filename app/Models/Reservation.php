@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Room;
+use App\Models\Student;
 
 class Reservation extends Model
 { 
@@ -34,5 +35,10 @@ class Reservation extends Model
     public function room()
     {
         return $this->hasOne(Room::class, 'id', 'room_id');
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'id', 'student_id');
     }
 }

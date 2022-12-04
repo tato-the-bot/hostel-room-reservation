@@ -105,7 +105,6 @@ Route::get('logout', 'App\Http\Controllers\LoginController@logout')->name('logou
 
 // Student routes
 Route::group(['middleware' => ['auth:web_student']], function() {
-    Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('room', 'App\Http\Controllers\RoomController@index')->name('room');
     Route::get('room/index', 'App\Http\Controllers\RoomController@index')->name('room-index');
     Route::get('room/view/{roomId}', 'App\Http\Controllers\RoomController@view')->name('room-view');
@@ -122,7 +121,6 @@ Route::group(['middleware' => ['auth:web_student']], function() {
 
 // Agent routes
 Route::group(['middleware' => ['auth:web_agent'], 'as' => 'agent.', 'prefix' => 'agent'], function() {
-    Route::get('dashboard', 'App\Http\Controllers\Agent\DashboardController@index')->name('dashboard');
     Route::get('room/index', 'App\Http\Controllers\Agent\RoomController@index')->name('room-index');
 
     Route::get('room/update/{roomId}', 'App\Http\Controllers\Agent\RoomController@update')->name('room-update');
@@ -140,5 +138,7 @@ Route::group(['middleware' => ['auth:web_agent'], 'as' => 'agent.', 'prefix' => 
 
 // Admin routes
 Route::group(['middleware' => ['auth:web_admin'], 'as' => 'admin.', 'prefix' => 'admin'], function() {
-    Route::get('dashboard', 'App\Http\Controllers\Admin\DashboardController@index')->name('dashboard');
+    Route::get('reporting', 'App\Http\Controllers\Admin\ReportController@index')->name('report-index');
+    Route::get('reporting/transactions-all', 'App\Http\Controllers\Admin\ReportController@transactionsAll')->name('report-transactions-all');
+    Route::get('reporting/reservations-all', 'App\Http\Controllers\Admin\ReportController@reservationsAll')->name('report-reservations-all');
 });

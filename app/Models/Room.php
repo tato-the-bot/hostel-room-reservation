@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Agent;
+use App\Models\Reservation;
 
 class Room extends Model
 {
@@ -39,5 +41,13 @@ class Room extends Model
         'agent_id'
     ];
 
-    
+    public function agent()
+    {
+        return $this->hasOne(Agent::class, 'id', 'agent_id');
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'room_id', 'id');
+    }
 }

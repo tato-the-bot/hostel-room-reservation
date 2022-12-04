@@ -205,15 +205,18 @@
                 <li><a href="gallery.php">Gallery</a></li>
 
                 @if (Auth::guard('web_student')->user() || Auth::guard('web_agent')->user() || Auth::guard('web_admin')->user())
-                    <li><a href="profile.php">Profile</a></li>
 
                         @if (Auth::guard('web_student')->user())
                             <li><a href="{{ route('room-index') }}">Rooms</a></li>
                             <li><a href="{{ route('reservation-index') }}">Reservations</a></li>
+                            <li><a href="profile.php">Profile</a></li>
                         @elseif (Auth::guard('web_agent')->user())
                             <li><a href="{{ route('agent.room-index') }}">Rooms</a></li>
                             <li><a href="{{ route('agent.reservation-index') }}">Reservations</a></li>
+                            <li><a href="profile.php">Profile</a></li>
                         @elseif (Auth::guard('web_admin')->user())
+                            <li><a href="{{ route('admin.report-index') }}">Reports</a></li>
+                            <li><a href="profile.php">User</a></li>
                         @endif
 
                     <li><a href="{{ route('logout') }}">Logout</a></li>
