@@ -216,7 +216,7 @@
                             <li><a href="profile.php">Profile</a></li>
                         @elseif (Auth::guard('web_admin')->user())
                             <li><a href="{{ route('admin.report-index') }}">Reports</a></li>
-                            <li><a href="profile.php">User</a></li>
+                            <li><a href="{{ route('admin.users-index') }}">Users</a></li>
                         @endif
 
                     <li><a href="{{ route('logout') }}">Logout</a></li>

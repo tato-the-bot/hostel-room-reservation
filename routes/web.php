@@ -141,4 +141,11 @@ Route::group(['middleware' => ['auth:web_admin'], 'as' => 'admin.', 'prefix' => 
     Route::get('reporting', 'App\Http\Controllers\Admin\ReportController@index')->name('report-index');
     Route::get('reporting/transactions-all', 'App\Http\Controllers\Admin\ReportController@transactionsAll')->name('report-transactions-all');
     Route::get('reporting/reservations-all', 'App\Http\Controllers\Admin\ReportController@reservationsAll')->name('report-reservations-all');
+    Route::get('users', 'App\Http\Controllers\Admin\UserController@index')->name('users-index');
+
+    Route::get('users/student/activate/{studentId}', 'App\Http\Controllers\Admin\UserController@activateStudent')->name('users-activate-student');
+    Route::get('users/student/deactivate/{studentId}', 'App\Http\Controllers\Admin\UserController@deactivateStudent')->name('users-deactivate-student');
+    Route::get('users/agent/activate/{agentId}', 'App\Http\Controllers\Admin\UserController@activateAgent')->name('users-activate-agent');
+    Route::get('users/agent/activate/{agentId}', 'App\Http\Controllers\Admin\UserController@deactivateAgent')->name('users-deactivate-agent');
+
 });
