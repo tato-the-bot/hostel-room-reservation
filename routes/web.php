@@ -17,10 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/gallery', function () {
-    return view('gallery');
-})->name('gallery');
-
 Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');

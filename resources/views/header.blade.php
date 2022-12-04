@@ -202,18 +202,15 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="{{ route('about-us') }}">About Us</a></li>
-                <li><a href="{{ route('gallery') }}">Gallery</a></li>
 
                 @if (Auth::guard('web_student')->user() || Auth::guard('web_agent')->user() || Auth::guard('web_admin')->user())
 
                         @if (Auth::guard('web_student')->user())
                             <li><a href="{{ route('room-index') }}">Rooms</a></li>
-                            <li><a href="{{ route('reservation-index') }}">Reservations</a></li>
-                            <li><a href="profile.php">Profile</a></li>
+                            <li><a href="{{ route('reservation-index') }}">Profile</a></li>
                         @elseif (Auth::guard('web_agent')->user())
                             <li><a href="{{ route('agent.room-index') }}">Rooms</a></li>
-                            <li><a href="{{ route('agent.reservation-index') }}">Reservations</a></li>
-                            <li><a href="profile.php">Profile</a></li>
+                            <li><a href="{{ route('agent.reservation-index') }}">Profile</a></li>
                         @elseif (Auth::guard('web_admin')->user())
                             <li><a href="{{ route('admin.report-index') }}">Reports</a></li>
                             <li><a href="{{ route('admin.users-index') }}">Users</a></li>

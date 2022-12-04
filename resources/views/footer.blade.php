@@ -21,7 +21,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                         <ul>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Room</a></li>
-                            <li><a href="#">Gallery</a></li>
                             <li><a href="#">Booking History</a></li>
                         </ul>
                     </div>
