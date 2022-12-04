@@ -74,14 +74,8 @@ and open the template in the editor.
             </div>
 
             <div class="row pt-4">
-                <div class="col-12 d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-
-            <div class="row pt-2">
                 <div class="col-6 d-grid gap-2">
-                    <a href="{{ route('reservation-pay', [$reservation->id]) }}" class="btn btn-secondary">Make Payment</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
                 <div class="col-6 d-grid gap-2">
                     <a href="{{ route('reservation-cancel', [$reservation->id]) }}" class="btn btn-warning">Cancel Reservation</a>
