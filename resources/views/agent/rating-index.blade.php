@@ -117,7 +117,7 @@ and open the template in the editor.
                 <thead>
                     <tr>
                         <th>
-                            Student ID
+                            Student Name
                         </th>
                         <th>
                             Rating
@@ -134,7 +134,7 @@ and open the template in the editor.
                     @foreach ($ratings as $rating)
                     <tr>
                         <td>
-                            {{ $rating->student_id }}
+                            {{ $rating->student->name }}
                         </td>
                         <td>
                             <div class="rated">

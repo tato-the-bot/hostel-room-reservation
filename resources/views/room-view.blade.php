@@ -9,6 +9,9 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Room Details</title>
         <style>
+            .img-rounded{
+                border-radius: 50%;
+            }
      .rate {
          float: left;
          height: 46px;
@@ -174,9 +177,18 @@ and open the template in the editor.
                         <div class="container">
                             <div class="row">
                                 <div class="col mt-4">
-                                        <p class="font-weight-bold ">Review</p>
-                                        <div class="form-group row">
-                                        <div>{{ $rating->user_id }}</div>
+                                    <div class="form-group row">
+                                        @if($rating->student->image == NULL)
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" style="margin-right:10px;">
+                                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                            </svg>  {{ $rating->student->name }}</div>
+                                        @else
+                                            <div>                                            
+                                                <img height="16" width="16" src="{{$rating->student->image}}" class="img-rounded" style="margin-right:10px;">{{ $rating->student->name }}
+                                            </div>
+                                        @endif
                                         <div class="col">
                                             <div class="rated">
                                             @for($i=1; $i<=$rating->rate; $i++)
@@ -187,10 +199,14 @@ and open the template in the editor.
                                         </div>
                                         </div>
                                         <div class="form-group row mt-4">
-                                        <div class="col">
+                                        <div class="col-12">
+                                            <p>Comments : </p>
+                                        </div>
+                                        <div class="col-12">
                                             <p>{{ $rating->comments }}</p>
                                         </div>
                                         </div>
+                                        <hr/>
                                 </div>
                             </div>
                         </div>

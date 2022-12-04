@@ -8,10 +8,15 @@ class Rating extends Model
 { 
 
     protected $fillable = [
-        'user_id',
+        'student_id',
         'room_id',
         'rate', 
         'comments',
     ];
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'id', 'student_id');
+    }
 
 }
