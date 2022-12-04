@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/gallery', function () {
+    return view('gallery');
+})->name('gallery');
+
+Route::get('/about-us', function () {
+    return view('about-us');
+})->name('about-us');
+
 // Student login page
 Route::get('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
 Route::post('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');

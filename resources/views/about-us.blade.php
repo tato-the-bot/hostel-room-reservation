@@ -1,27 +1,20 @@
+<!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="UTF-8">
         <title>About Us</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
-         <style>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" 
+              integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+        
+        <style>
             body{
                 margin: 0px;
                 padding: 0px;
                 font-family: Arial;
                 box-sizing: border-box;
             }
-            /*--navigate--*/
-            nav .logo{
-                padding: 22px 20px;
-                height: 80px;
-                float: left;
-                font-size: 24px;
-                font-weight: bold;
-                text-transform: uppercase;
-                color: #000;
-            }
+            /*--nav--*/
             nav{
                 position: fixed;
                 top: 0;
@@ -31,6 +24,15 @@
                 padding: 10px 90px;
                 box-sizing: border-box;
                 background: rgb(204, 204, 255);
+            }
+            nav .logo{
+                padding: 22px 20px;
+                height: 80px;
+                float: left;
+                font-size: 24px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #000;
             }
             nav ul{
                 list-style: none;
@@ -57,51 +59,24 @@
                 color: #fff;
                 border-radius: 6px;
             }
-            /*--home page--*/
-            .banner-area{
-                width: 100%;
-                height: 100vh;
-                background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/tarcklcampus.jpg');
-                background-size: cover;
-            }
-            .content-area{
-                height: 100%;
-                width: 50%;
-                padding-top: 3%;
-                margin-left: 27%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .content{
-                text-align: center;
-            }
-            .content h1{
-                font-size: 60px;
-                color: #fff;
-            }
-            .content .btn{
-                border: none;
-                outline: none;
-                padding: 15px;
-                margin-top: 80px;
-                border-radius: 4px;
-                color:#eee;
-                font-size: 18px;
-                font-weight: bold;
-                cursor: pointer;
-                background:rgb(153, 0, 0);
-            }
-            /*--scroll & about us--*/
+            /*--content--*/
             .section{
                 width: 100%;
-                min-height: 90vh;
+                min-height: 70vh;
             }
-            .section .container{
+            .container{
                 width: 80%;
                 display: block;
                 margin: auto;
-                padding-top: 200px;
+                padding-top: 100px;
+            }
+            .content-section{
+                float: right;
+                width: 55%;
+            }
+            .image-section{
+                float: left;
+                width: 40%
             }
             .image-section img{
                 width: 100%;
@@ -109,16 +84,20 @@
             }
             .content-section .title{
                 text-transform: uppercase;
-                font-size: 5px;
+                font-size: 15px;
             }
             .content-section .content h3{
-                margin-top: 15px;
+                margin-top: 30px;
                 color: #3d3d5c;
                 font-family: Lucida Sans Unicode;
             }
-            .content-section.content.button2 a:hover{
-                background-color: #a52a2a;
-                color: #fff;
+            .content-section .social{
+                margin-top: 60px;
+            }
+            .content-section .social i{
+                color: rgb(153, 0, 0);
+                font-size: 30px;
+                padding: 0px 10px;
             }
             /*--footer--*/
             .footer{
@@ -128,6 +107,7 @@
             .footer .container{
                 max-width: 1170px;
                 margin: auto;
+                padding-top: 0px;
             }
             .footer .row{
                 display: flex;
@@ -154,7 +134,7 @@
                 left: 0;
                 bottom: -10px;
                 background-color: #e91e63;
-                height: 2px;
+                height: 3px;
                 box-sizing: border-box;
                 width: 50px;
             }
@@ -196,34 +176,37 @@
     </head>
 
     <body>
-          <!----navigate---->
-        <nav>
-            <div class="logo">Hostel Management System</div>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="{{ route('about-us') }}">About Us</a></li>
-                <li><a href="{{ route('gallery') }}">Gallery</a></li>
+        @include('header')
 
-                @if (Auth::guard('web_student')->user() || Auth::guard('web_agent')->user() || Auth::guard('web_admin')->user())
+        <div class="aboutUs" style="margin-top:150px">
+            <h1 style="font-size: 30px;color: black;font-weight: bold;text-align: center;">About Us</h1>
+            <hr style="width:90%;border-top: 2px groove #8c8c8c;">
+        </div>
 
-                        @if (Auth::guard('web_student')->user())
-                            <li><a href="{{ route('room-index') }}">Rooms</a></li>
-                            <li><a href="{{ route('reservation-index') }}">Reservations</a></li>
-                            <li><a href="profile.php">Profile</a></li>
-                        @elseif (Auth::guard('web_agent')->user())
-                            <li><a href="{{ route('agent.room-index') }}">Rooms</a></li>
-                            <li><a href="{{ route('agent.reservation-index') }}">Reservations</a></li>
-                            <li><a href="profile.php">Profile</a></li>
-                        @elseif (Auth::guard('web_admin')->user())
-                            <li><a href="{{ route('admin.report-index') }}">Reports</a></li>
-                            <li><a href="{{ route('admin.users-index') }}">Users</a></li>
-                        @endif
+        <div class="section">
+            <div class="container">
+                <div class="content-section">
+                    <div class="content">
+                        <div class="title">
+                            <h1>Our Hostel</h1>
+                        </div>
+                        <h3>Hostel Management System was founded in November of 2021 by TARC students. 
+                            It is a platform that provides room reservation service to a student who is finding 
+                            a hostel before a new semester comes, and also provides an opportunity for the agent 
+                            to rent their room. </h3>
+                    </div>
+                    <div class="social">
+                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="image-section">
+                    <img src="{{ asset('images/aboutus.jpg') }}" alt="about us">
+                </div>
+            </div>
+        </div>
 
-                    <li><a href="{{ route('logout') }}">Logout</a></li>
-                @else
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                @endif
-            </ul>
-        </nav>
+        @include('footer')
     </body>
 </html>
