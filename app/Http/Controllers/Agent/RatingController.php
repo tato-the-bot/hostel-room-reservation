@@ -13,7 +13,7 @@ class RatingController extends Controller
 {
     public function index(Request $request, $roomId)
     {
-        $ratings = Rating::where('id', $roomId)
+        $ratings = Rating::where('room_id', $roomId)
             ->get();
 
         return view('agent.rating-index', [
