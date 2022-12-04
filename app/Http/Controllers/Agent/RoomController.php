@@ -44,17 +44,19 @@ class RoomController extends Controller
                 dd($validator->errors());
             }
 
+            $room = Room:: where('agent_id', Auth::guard('web_agent')->user()->id)
+                    ->where('id', $roomId)
+                    ->first();
+
             if($request->image != NULL){
                 $imageName = time().'.'.$request->image->extension();  
                 $request->image->move(public_path('storage/images'), $imageName);
                 $imgURL = '/storage/images/'.$imageName;
             }else{
-                $imgURL = null;
+                $imgURL = $room->image;
             }
      
-            $room = Room:: where('agent_id', Auth::guard('web_agent')->user()->id)
-                    ->where('id', $roomId)
-                    ->first();
+            
 
             $room->room_title = $request->get('room_title');
             $room->room_type = $request->get('room_type');
