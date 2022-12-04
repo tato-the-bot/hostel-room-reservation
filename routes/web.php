@@ -49,10 +49,6 @@ Route::post('student/register', 'App\Http\Controllers\RegisterController@registe
 Route::get('student/register/otp', 'App\Http\Controllers\RegisterController@registerOtp')->name('student.register.otp');
 Route::post('student/register/otp', 'App\Http\Controllers\RegisterController@registerOtp')->name('student.register.otp');
 
-//Student Save rating 
-Route::post('room/rating/{roomId}', 'App\Http\Controllers\RatingController@store')->name('room-rating');
-
-
 // Agent login page
 Route::get('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
 Route::post('agent/login', 'App\Http\Controllers\Agent\LoginController@login')->name('agent.login');
@@ -118,6 +114,8 @@ Route::group(['middleware' => ['auth:web_student']], function() {
     Route::get('room/view/{roomId}', 'App\Http\Controllers\RoomController@view')->name('room-view');
     Route::post('room/book/{roomId}', 'App\Http\Controllers\RoomController@book')->name('room-book');
 
+    Route::post('room/rating/{roomId}', 'App\Http\Controllers\RatingController@store')->name('room-rating');
+
     Route::get('reservation/index', 'App\Http\Controllers\ReservationController@index')->name('reservation-index');
     Route::get('reservation/update/{reservationId}', 'App\Http\Controllers\ReservationController@update')->name('reservation-update');
     Route::post('reservation/update/{reservationId}', 'App\Http\Controllers\ReservationController@update')->name('reservation-update');
@@ -138,6 +136,8 @@ Route::group(['middleware' => ['auth:web_agent'], 'as' => 'agent.', 'prefix' => 
 
     Route::get('room/create', 'App\Http\Controllers\Agent\RoomController@create')->name('room-create');
     Route::post('room/create', 'App\Http\Controllers\Agent\RoomController@create')->name('room-create');
+
+    Route::get('rating/index/{roomId}', 'App\Http\Controllers\Agent\RatingController@index')->name('rating-index');
 
     Route::get('reservation/index', 'App\Http\Controllers\Agent\ReservationController@index')->name('reservation-index');
     Route::get('reservation/approve/{reservationId}', 'App\Http\Controllers\Agent\ReservationController@approve')->name('reservation-approve');

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Room;
+use App\Models\Rating;
 use App\Http\Controllers\ImageUploadController;
 
 class RoomController extends Controller

@@ -79,13 +79,13 @@ and open the template in the editor.
                             {{ \App\Models\Room::STATUS_LABEL[$room->status] }}
                         </td>
                         <td>
-                            <a href="{{ route('agent.room-update', $room->id) }}">Edit</a>
-                            <a href="{{ route('agent.room-delete', $room->id) }}" id="delete">Delete</a>
+                            <a href="{{ route('agent.room-update', $room->id) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ route('agent.room-delete', $room->id) }}" id="delete-{{$room->id}}" class="btn btn-warning">Delete</a>
+                            <a href="{{ route('agent.rating-index', $room->id) }}" class="btn btn-info">View Review</a>
                         </td>
                     </tr>
-                    @endforeach
-                     <script>
-                        $('#delete').click(function(e) {
+                    <script>
+                        $('#delete-{{$room->id}}').click(function(e) {
                             e.preventDefault();
                             if (confirm('Are you sure you want to delete the room?')) {
                                 location.href = "{{ route('agent.room-delete', $room->id) }}";
@@ -94,6 +94,7 @@ and open the template in the editor.
                             }
                         });
                     </script>
+                    @endforeach
                 </tbody>
             </table>
         </div>

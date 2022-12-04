@@ -118,7 +118,8 @@ and open the template in the editor.
                                 @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_PENDING_APPROVAL)
                                     <a href="{{ route('reservation-update', $reservation->id) }}" class="btn btn-primary">Update</a>
 
-
+                                    <a id="cancel-{{$reservation->id}}" href="{{ route('reservation-cancel', $reservation->id) }}" class="btn btn-warning">Cancel</a>
+                                    
                                 @elseif ($reservation->status == \App\Models\Reservation::STATUS_TYPE_APPROVED)
                                     <div id="paypal-reservation-pay-{{$reservation->id}}"></div>
 
@@ -154,16 +155,15 @@ and open the template in the editor.
                                     }).render('#paypal-reservation-pay-{{$reservation->id}}');
                                     </script>
 
-                                    <a id="cancel" href="{{ route('reservation-cancel', $reservation->id) }}" class="btn btn-warning">Cancel</a>
                                 @elseif ($reservation->status == \App\Models\Reservation::STATUS_TYPE_PAID_DEPOSIT)
                                     <a target="popup" onclick="window.open('{{ route('transaction-invoice', $reservation->transaction_id) }}', 'newwindow', 'width=1000,height=500'); return false;" class="btn btn-warning">Invoice</a>
                                 @endif
+
                             @endif
                         </td>
                     </tr>
-                    @endforeach
                     <script>
-                        $('#cancel').click(function(e) {
+                        $('#cancel-{{$reservation->id}}').click(function(e) {
                             e.preventDefault();
                             if (confirm('Are you sure you want to cancel the reservation?')) {
                                 location.href = "{{ route('reservation-cancel', $reservation->id) }}";
@@ -172,6 +172,7 @@ and open the template in the editor.
                             }
                         });
                     </script>
+                    @endforeach
                 </tbody>
             </table>
         </div>
