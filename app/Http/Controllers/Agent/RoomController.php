@@ -54,7 +54,8 @@ class RoomController extends Controller
 
                 $room->room_title = $request->get('room_title');
                 $room->room_type = $request->get('room_type');
-                $room->room_desc = $request->get('room_desc') ;
+                $room->room_desc = $request->get('room_desc');
+                $room->location = $request->get('location');
                 $room->monthly_rental = $request->get('monthly_rental');
                 $room->deposit = $request->get('deposit');
                 $room->image = $imgURL;
@@ -77,6 +78,7 @@ class RoomController extends Controller
             'room_title' => $request->post('room_title') ?? $room->room_title,
             'room_type' => $request->post('room_type') ?? $room->room_type,
             'room_desc' => $request->post('room_desc') ?? $room->room_desc,
+            'location' => $request->post('location') ?? $room->location,
             'monthly_rental' => $request->post('monthly_rental') ?? $room->monthly_rental,
             'deposit' => $request->post('deposit') ?? $room->deposit,
             'remark' => $request->post('remark') ?? $room->remark,
@@ -128,6 +130,7 @@ class RoomController extends Controller
                 $room->room_title = $request->get('room_title');
                 $room->room_type = $request->get('room_type');
                 $room->room_desc = $request->get('room_desc') ;
+                $room->location = $request->get('location') ;
                 $room->monthly_rental = $request->get('monthly_rental');
                 $room->deposit = $request->get('deposit');
                 $room->image = $imgURL;
@@ -146,6 +149,7 @@ class RoomController extends Controller
             'room_title' => $request->post('room_title'),
             'room_type' => $request->post('room_type'),
             'room_desc' => $request->post('room_desc'),
+            'location' => $request->post('location'),
             'monthly_rental' => $request->post('monthly_rental'),
             'deposit' => $request->post('deposit'),
             'remark' => $request->post('remark'),

@@ -71,6 +71,19 @@ and open the template in the editor.
             </tr>
             <tr>
                 <td>
+                    Location:
+                </td>
+                <td>
+                    <select name="location" id="location" class="form-select" value="{{$location}}" required>
+                        <option value="">Select Location</option>
+                        @foreach(\App\Models\Room::LOCATION_OPTIONS as $loc)
+                            <option value="{{$loc}}" {{ $loc == $location ? 'selected' : '' }}>{{$loc}}</option>
+                        @endforeach
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     Monthly Rental:
                 </td>
                 <td>

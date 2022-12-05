@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Agent;
 use App\Models\Reservation;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Room extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     const ROOM_TYPE_BIG = 'big_room';
     const ROOM_TYPE_MEDIUM = 'medium_room';
@@ -27,6 +29,13 @@ class Room extends Model
     const STATUS_LABEL = [
         self::STATUS_ACTIVE => 'Active',
         self::STATUS_RESERVED => 'Reserved',
+    ];
+
+    // TODO Change later
+    const LOCATION_OPTIONS = [
+        'PV127',
+        'Kelana Jaya',
+        'ABsolutely',
     ];
 
     protected $fillable = [

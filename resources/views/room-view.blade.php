@@ -122,35 +122,53 @@ and open the template in the editor.
                 <div class="col-8">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <h3>Details</h3>
                             </div>
+                            <div class="col-6">
+                                <h3>Remark</h3>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
-                                {{ $room->room_desc }}
+                            <div class="col-6">
+                                {{ $room->room_desc ?? '-' }}
+                            </div>
+                            <div class="col-6">
+                                {{ $room->remark ?? '-' }}
                             </div>
                         </div>
 
                         <div class="row pt-4">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <h3>Deposit</h3>
                             </div>
+                            <div class="col-6">
+                                <h3>Date Posted</h3>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-6">
                                 RM {{ $room->deposit }}
+                            </div>
+                            <div class="col-6">
+                                {{ $room->created_at }}
                             </div>
                         </div>
 
                         <div class="row pt-4">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <h3>Monthly Rental</h3>
+                            </div>
+                            <div class="col-6">
+                                <h3>Location</h3>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 RM {{ $room->monthly_rental }} per month
+                            </div>
+                            <div class="col-6">
+                                Location - to be added
                             </div>
                         </div>
 

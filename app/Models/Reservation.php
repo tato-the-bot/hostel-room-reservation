@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Room;
 use App\Models\Student;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reservation extends Model
 { 
+    use SoftDeletes;
+
     const STATUS_TYPE_PENDING_APPROVAL = 0;
     const STATUS_TYPE_APPROVED = 1;
     const STATUS_TYPE_PAID_DEPOSIT = 2;
