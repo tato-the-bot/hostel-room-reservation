@@ -168,7 +168,7 @@ and open the template in the editor.
                                 RM {{ $room->monthly_rental }} per month
                             </div>
                             <div class="col-6">
-                                Location - to be added
+                                {{ $room->location }}
                             </div>
                         </div>
 
