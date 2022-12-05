@@ -45,9 +45,9 @@ and open the template in the editor.
                         <td>
                         <select name="room_type" id="room_type" class="form-select" value="{{$room_type}}" required>
                             <option value="">Select Room Type</option>
-                            <option value="big_room">Big Room</option>
-                            <option value="medium_room">Medium Room</option>
-                            <option value="single_room">Single Room</option>
+                            @foreach(\App\Models\Room::ROOM_TYPE_LABEL as $value => $label)
+                                <option value="{{$value}}">{{$label}}</option>
+                            @endforeach
                         </select>
                         </td>
                     </tr>

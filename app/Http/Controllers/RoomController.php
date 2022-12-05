@@ -14,11 +14,27 @@ class RoomController extends Controller
 {
     public function index(Request $request)
     {
-        $rooms = Room::where('status', Room::STATUS_ACTIVE)
-            ->get();
+        $roomQuery = Room::where('status', Room::STATUS_ACTIVE);
+
+        if ($request->get('room_type')) {
+            $roomQuery->where('room_type', $request->get('room_type'));
+        }
+
+        if ($request->get('location')) {
+            $roomQuery->where('location', $request->get('location'));
+        } 
+
+        if ($request->get('search')) {
+            $roomQuery->where('room_title', 'LIKE', '%' . $request->get('search') . '%');
+        } 
+        
+        $rooms = $roomQuery->get();
 
         return view('room-index', [
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'room_type' => $request->get('room_type'),
+            'location' => $request->get('location'),
+            'search' => $request->get('search'),
         ]);
     }
 

@@ -20,6 +20,34 @@ and open the template in the editor.
         </div>
 
         <div class="container pb-4">
+            <form method="GET">
+            <div class="row">
+                <div class="col-3 mt-4">
+                    <input name="search" class="form-control" type="text" value="{{ $search }}">
+                </div>
+
+                <div class="col-3 mt-4">
+                    <select name="room_type" class="form-select" value="{{$room_type}}">
+                        <option value="">Select Room Type</option>
+                        @foreach(\App\Models\Room::ROOM_TYPE_LABEL as $value => $label)
+                            <option value="{{$value}}" {{ $value == $room_type ? 'selected' : '' }}>{{$label}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-3 mt-4">
+                    <select name="location" class="form-select" value="{{$location}}">
+                        <option value="">Select Location</option>
+                        @foreach(\App\Models\Room::LOCATION_OPTIONS as $loc)
+                            <option value="{{$loc}}" {{ $loc == $location ? 'selected' : '' }}>{{$loc}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-3 mt-4">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+            </form>
             <div class="row">
                 @foreach ($rooms as $room)
                 <div class="col-3 mt-4">

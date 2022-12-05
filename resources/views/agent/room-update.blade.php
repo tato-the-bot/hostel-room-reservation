@@ -55,9 +55,9 @@ and open the template in the editor.
                 <td>
                 <select name="room_type" id="room_type" value="{{ $room_type }}" class="form-select" required>
                     <option value="">Select Room Type</option>
-                    <option value="big_room" {{ "big_room" == $room->room_type ? 'selected' : '' }} >Big Room</option>
-                    <option value="medium_room" {{ "medium_room" == $room->room_type ? 'selected' : '' }}>Medium Room</option>
-                    <option value="single_room" {{ "single_room" == $room->room_type ? 'selected' : '' }}>Single Room</option>
+                    @foreach(\App\Models\Room::ROOM_TYPE_LABEL as $value => $label)
+                        <option value="{{$value}}" {{ $value == $room_type ? 'selected' : '' }}>{{$label}}</option>
+                    @endforeach
                 </select>
                 </td>
             </tr>
