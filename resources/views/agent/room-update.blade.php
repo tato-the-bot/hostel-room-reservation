@@ -27,6 +27,15 @@ and open the template in the editor.
         
 
         <div class="container pb-4">
+
+        @if(count($errors) > 0) 
+        <div class="alert alert-danger">
+            @foreach ($errors as $error) 
+                <div>{{$error[0]}}</div>
+            @endforeach
+        </div>
+        @endif
+
         <form method="post" action="{{ route('agent.room-update' , $room->id) }}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
@@ -36,8 +45,7 @@ and open the template in the editor.
                     Room Title:
                 </td>
                 <td>
-                    <input name="room_title" class="form-control" type="text" value="{{ $room->room_title ?? old('room_title') }}">
-                    <p></p>
+                    <input name="room_title" class="form-control" type="text" value="{{ $room_title }}" required>
                 </td>
             </tr>
             <tr>
@@ -45,7 +53,7 @@ and open the template in the editor.
                     Room Type:
                 </td>
                 <td>
-                <select name="room_type" id="room_type" value="{{ $room->room_type }}" class="form-select">
+                <select name="room_type" id="room_type" value="{{ $room_type }}" class="form-select" required>
                     <option value="">Select Room Type</option>
                     <option value="big_room" {{ "big_room" == $room->room_type ? 'selected' : '' }} >Big Room</option>
                     <option value="medium_room" {{ "medium_room" == $room->room_type ? 'selected' : '' }}>Medium Room</option>
@@ -58,7 +66,7 @@ and open the template in the editor.
                     Room Description:
                 </td>
                 <td>
-                    <textarea name="room_desc" rows="4" cols="50" value="{{ $room->room_desc ?? old('room_desc') }}" class="form-control">{{ $room->room_desc ?? old('room_desc') }}</textarea>
+                    <textarea name="room_desc" rows="4" cols="50" class="form-control">{{ $room_desc }}</textarea>
                 </td>
             </tr>
             <tr>
@@ -66,7 +74,7 @@ and open the template in the editor.
                     Monthly Rental:
                 </td>
                 <td>
-                    <input name="monthly_rental" type="text" value="{{ $room->monthly_rental ?? old('monthly_rental') }}" class="form-control">
+                    <input name="monthly_rental" type="number" value="{{ $monthly_rental }}" class="form-control" required>
                 </td>
             </tr>
             <tr>
@@ -74,7 +82,7 @@ and open the template in the editor.
                     Deposit:
                 </td>
                 <td>
-                <input name="deposit" type="text" value="{{ $room->deposit ?? old('deposit') }}" class="form-control">
+                <input name="deposit" type="number" value="{{ $deposit }}" class="form-control" required>
                 </td>
             </tr>
             <tr>
@@ -83,7 +91,7 @@ and open the template in the editor.
                 </td>
                 <td>
                     <img src='{{ $room->image }}' style="width:440px; height:240px;">
-                    <input name="image" type="file" value="{{ $room->image ?? old('image') }}" class="form-control">
+                    <input name="image" type="file" class="form-control">
                 </td>
             </tr>
             <tr>
@@ -91,7 +99,7 @@ and open the template in the editor.
                     Remark:
                 </td>
                 <td>
-                    <input name="remark" type="text" value="{{ $room->remark ?? old('remark') }}" class="form-control">
+                    <input name="remark" type="text" value="{{ $remark }}" class="form-control">
                 </td>
             </tr>
         </table>

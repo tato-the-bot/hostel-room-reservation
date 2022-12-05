@@ -10,11 +10,14 @@
 	<body>
 		<header>
 			<h1>Invoice</h1>
+
 			<address>
 				<p>Agent: {{ $agent->name }}</p>
 				<p>Phone: {{ $agent->phone_number }}</p>
 				<p>Email: {{ $agent->email }}</p>
 			</address>
+
+			<img src="{{ asset('images/logo.png') }}" alt="logo">
 		</header>
 		<article>
 			<h1>Recipient</h1>
@@ -60,6 +63,9 @@
 				</tr>
 			</table>
 		</article>
+		<div style="margin: auto; text-align: center;">
+			<button class="btn" style="width:10%;" onclick="window.print()">Print</button>
+		</div>
 	</body>
 </html>
 
@@ -177,6 +183,21 @@ aside h1 { border-color: #999; border-bottom-style: solid; }
 	float: left;
 	text-align: center;
 	width: 0.6em;
+}
+
+.btn
+{
+	font-size: .8rem;
+	background: #9AF;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	background-image: -moz-linear-gradient(#00ADEE 5%, #0078A5 100%);
+	background-image: -webkit-linear-gradient(#00ADEE 5%, #0078A5 100%);
+	border-radius: 0.5em;
+	border-color: #0076A3;
+	color: #FFF;
+	cursor: pointer;
+	font-weight: bold;
+	text-shadow: 0 -1px 2px rgba(0,0,0,0.333);
 }
 
 .add, .cut

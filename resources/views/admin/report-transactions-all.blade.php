@@ -39,6 +39,9 @@
 				</tr>
 			</table>
 		</article>
+		<div style="margin: auto; text-align: center;">
+			<button class="btn" style="width:10%;" onclick="window.print()">Print</button>
+		</div>
 	</body>
 </html>
 
@@ -180,6 +183,21 @@ aside h1 { border-color: #999; border-bottom-style: solid; }
 .cut { -webkit-transition: opacity 100ms ease-in; }
 
 tr:hover .cut { opacity: 1; }
+
+.btn
+{
+	font-size: .8rem;
+	background: #9AF;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	background-image: -moz-linear-gradient(#00ADEE 5%, #0078A5 100%);
+	background-image: -webkit-linear-gradient(#00ADEE 5%, #0078A5 100%);
+	border-radius: 0.5em;
+	border-color: #0076A3;
+	color: #FFF;
+	cursor: pointer;
+	font-weight: bold;
+	text-shadow: 0 -1px 2px rgba(0,0,0,0.333);
+}
 
 @media print {
 	* { -webkit-print-color-adjust: exact; }

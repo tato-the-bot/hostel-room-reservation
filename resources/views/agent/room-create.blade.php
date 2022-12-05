@@ -19,6 +19,14 @@ and open the template in the editor.
         </div>
 
         <div class="container pb-4">
+            @if(count($errors) > 0) 
+            <div class="alert alert-danger">
+                @foreach ($errors as $error) 
+                    <div>{{$error[0]}}</div>
+                @endforeach
+            </div>
+            @endif
+
             <form method="post" action="{{ route('agent.room-create') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <table>
@@ -27,7 +35,7 @@ and open the template in the editor.
                             Room Title:
                         </td>
                         <td>
-                            <input name="room_title" class="form-control" type="text">
+                            <input name="room_title" class="form-control" type="text" value="{{$room_title}}" required>
                         </td>
                     </tr>
                     <tr>
@@ -35,7 +43,7 @@ and open the template in the editor.
                             Room Type:
                         </td>
                         <td>
-                        <select name="room_type" id="room_type" class="form-select">
+                        <select name="room_type" id="room_type" class="form-select" value="{{$room_type}}" required>
                             <option value="">Select Room Type</option>
                             <option value="big_room">Big Room</option>
                             <option value="medium_room">Medium Room</option>
@@ -48,7 +56,7 @@ and open the template in the editor.
                             Room Description:
                         </td>
                         <td>
-                            <textarea name="room_desc" rows="4" cols="50" class="form-control"></textarea>
+                            <textarea name="room_desc" rows="4" cols="50" class="form-control">{{$room_desc}}</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -56,7 +64,7 @@ and open the template in the editor.
                             Monthly Rental:
                         </td>
                         <td>
-                            <input name="monthly_rental" type="text" class="form-control">
+                            <input name="monthly_rental" type="number" class="form-control" required value="{{$monthly_rental}}">
                         </td>
                     </tr>
                     <tr>
@@ -64,7 +72,7 @@ and open the template in the editor.
                             Deposit:
                         </td>
                         <td>
-                        <input name="deposit" type="text" class="form-control">
+                        <input name="deposit" type="number" class="form-control" value="{{$deposit}}" required>
                         </td>
                     </tr>
                     <tr>
@@ -72,7 +80,7 @@ and open the template in the editor.
                             Image:
                         </td>
                         <td>
-                            <input name="image" type="file" class="form-control">
+                            <input name="image" type="file" class="form-control" required>
                         </td>
                     </tr>
                     <tr>
@@ -80,7 +88,7 @@ and open the template in the editor.
                             Remark:
                         </td>
                         <td>
-                            <input name="remark" type="text" class="form-control">
+                            <input name="remark" type="text" class="form-control" value="{{$remark}}">
                         </td>
                     </tr>
                 </table>
