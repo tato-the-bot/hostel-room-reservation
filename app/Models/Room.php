@@ -33,9 +33,11 @@ class Room extends Model
 
     // TODO Change later
     const LOCATION_OPTIONS = [
-        'PV127',
-        'Kelana Jaya',
-        'ABsolutely',
+        'PV',
+        'Prima Setapak',  
+        'The Nest',  
+        'TBR', 
+        'Zetapak',
     ];
 
     protected $fillable = [
