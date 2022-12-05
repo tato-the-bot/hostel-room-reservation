@@ -38,27 +38,30 @@ class ReservationController extends Controller
                 [
                     'contract_start_date' => ['required', 'date_format:Y-m-d'],
                     'contract_end_date' => ['required', 'date_format:Y-m-d'],
+                    'remark' => ['string', 'nullable']
                 ]
             );
     
-            if ($validator->fails()) {
-                dd($validator->errors());
+            if (!$validator->fails()) {
+                $reservation->contract_start_date = $request->post('contract_start_date');
+                $reservation->contract_end_date = $request->post('contract_end_date');
+                $reservation->remark = $request->post('remark');
+                $reservation->save();
             }
-
-            $reservation->contract_start_date = $request->post('contract_start_date');
-            $reservation->contract_end_date = $request->post('contract_end_date');
-            $reservation->remark = $request->post('remark');
-            $reservation->save();
         }
 
         $startDate = date('Y-m-d', strtotime($reservation->contract_start_date));
         $endDate = date('Y-m-d', strtotime($reservation->contract_end_date));
 
-        return view('reservation-update', [
+        $viewData = [
             'reservation' => $reservation,
-            'startDate' => $startDate,
-            'endDate' => $endDate,
-        ]);
+            'startDate' => $request->post('contract_start_date') ?? $startDate,
+            'endDate' => $request->post('contract_end_date') ?? $endDate,
+            'remark' => $request->post('remark') ?? $reservation->remark,
+            'errors' => !empty($validator) ? $validator->errors()->getMessages() : []
+        ];
+
+        return view('reservation-update', $viewData);
     }
 
     public function cancel(Request $request, $reservationId)

@@ -223,6 +223,14 @@ and open the template in the editor.
                             </div>
                             <div class="modal-body">
                                 <form class="container" method="POST" action="{{ route('room-book', [$room->id]) }}">
+                                    @if(count($errors) > 0) 
+                                    <div class="alert alert-danger">
+                                        @foreach ($errors as $error) 
+                                            <div>{{$error[0]}}</div>
+                                        @endforeach
+                                    </div>
+                                    @endif
+
                                     @csrf
                                     <div class="row">
                                         <div class="col-6">
@@ -251,10 +259,10 @@ and open the template in the editor.
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <input type="date" class="form-control" name="contract_start_date">
+                                            <input type="date" class="form-control" name="contract_start_date" required>
                                         </div>
                                         <div class="col-6">
-                                            <input type="number" class="form-control" name="duration"> 
+                                            <input type="number" class="form-control" name="duration" required> 
                                         </div>
                                     </div>
 

@@ -18,9 +18,16 @@ and open the template in the editor.
             <h1 style="font-size: 30px;color: black;font-weight: bold;text-align: center;">Reservations</h1>
             <hr style="width:90%;border-top: 2px groove #8c8c8c;">
         </div>
-
-  
+        
         <form class="container pb-4" method="POST" action="{{ route('reservation-update', [$reservation->id]) }}">
+            @if(count($errors) > 0) 
+                <div class="alert alert-danger">
+                    @foreach ($errors as $error) 
+                        <div>{{$error[0]}}</div>
+                    @endforeach
+                </div>
+            @endif
+
             @csrf
             <div class="row">
                 <div class="col-6">
@@ -49,10 +56,10 @@ and open the template in the editor.
             </div>
             <div class="row">
                 <div class="col-6">
-                    <input type="date" class="form-control" name="contract_start_date" value="{{ $startDate }}">
+                    <input type="date" class="form-control" name="contract_start_date" value="{{ $startDate }}" required>
                 </div>
                 <div class="col-6">
-                    <input type="date" class="form-control" name="contract_end_date" value="{{ $endDate }}">
+                    <input type="date" class="form-control" name="contract_end_date" value="{{ $endDate }}" required>
                 </div>
             </div>
 
@@ -63,7 +70,7 @@ and open the template in the editor.
             </div>
             <div class="row">
                 <div class="col-12">
-                    <textarea class="form-control" name="remark" rows="3">{{ $reservation->remark }}</textarea>
+                    <textarea class="form-control" name="remark" rows="3">{{ $remark }}</textarea>
                 </div>
             </div>
 
