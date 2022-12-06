@@ -22,59 +22,61 @@ and open the template in the editor.
         <div class="container pb-4">
             <div class="row">
                 <div class="col-4">
+                    @if($student->image != NULL)
                     <img src="{{ $student->image }}" height="250" width="250" class="card-img-top" >
+                    @endif
                 </div>
 
                 <div class="col-8">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-4">
-                                <h3>Student ID : </h3>
+                            <div class="col-3">
+                                Student ID : 
                             </div>
-                            <div class="col-8">
-                                {{ $room->room_desc }}
-                            </div>
-                        </div>
-
-                        <div class="row pt-4">
-                            <div class="col-4">
-                                <h3>Name : </h3>
-                            </div>
-                            <div class="col-8">
-                                {{ $room->room_desc }}
+                            <div class="col-9">
+                                {{ $student->student_id }}
                             </div>
                         </div>
 
                         <div class="row pt-4">
-                            <div class="col-4">
-                                <h3>Email : </h3>
+                            <div class="col-3">
+                                Name : 
                             </div>
-                            <div class="col-8">
-                                {{ $room->room_desc }}
-                            </div>
-                        </div>
-
-                        <div class="row pt-4">
-                            <div class="col-4">
-                                <h3>Phone No : </h3>
-                            </div>
-                            <div class="col-8">
-                                {{ $room->room_desc }}
+                            <div class="col-9">
+                                {{ $student->name }}
                             </div>
                         </div>
 
                         <div class="row pt-4">
-                            <div class="col-6">
-                                <button type="button" class="btn text-uppercase">Update Profile</button>
+                            <div class="col-3">
+                                Email : 
                             </div>
-                            <div class="col-6">
-                                <button type="button" class="btn">Change Password</button>
+                            <div class="col-9">
+                                {{ $student->email }}
                             </div>
-                            <div class="col-6">
-                                <button type="button" class="btn">Delete Account</button>
+                        </div>
+
+                        <div class="row pt-4">
+                            <div class="col-3">
+                                Phone No : 
                             </div>
-                            <div class="col-6">
-                                <button type="button" class="btn"> Logout</button>
+                            <div class="col-9">
+                                {{ $student->phone_number }}
+                            </div>
+                        </div>
+
+                        <div class="row pt-4">
+                            <div class="col-6  pt-4">
+                                <a class="btn text-uppercase btn-primary w-100" href="">Update Profile</a>
+                            </div>
+                            <div class="col-6 pt-4">
+                                <a class="btn btn-warning text-uppercase w-100" href="">Change Password</a>
+                            </div>
+                            <div class="col-6 pt-4">
+                                <a class="btn btn-danger text-uppercase w-100" href="">Delete Account</a>
+                            </div>
+                            <div class="col-6 pt-4">
+                                <a class="btn btn-primary text-uppercase w-100" href="{{ route('logout') }}"> Logout</a>
                             </div>
                         </div>
                     </div>

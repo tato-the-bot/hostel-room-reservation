@@ -119,6 +119,10 @@ Route::group(['middleware' => ['auth:web_student']], function() {
     Route::post('reservation/pay/{reservationId}', 'App\Http\Controllers\ReservationController@pay')->name('reservation-pay');
 
     Route::get('transaction/invoice/{transactionId}', 'App\Http\Controllers\TransactionController@invoice')->name('transaction-invoice');
+
+    Route::get('profile/view', 'App\Http\Controllers\StudentController@index')->name('profile-view');
+    Route::get('profile/update', 'App\Http\Controllers\StudentController@update')->name('profile-update');
+
 });
 
 // Agent routes
