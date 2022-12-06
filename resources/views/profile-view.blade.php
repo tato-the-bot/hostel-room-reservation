@@ -70,10 +70,10 @@ and open the template in the editor.
                                 <a class="btn text-uppercase btn-primary w-100" href="{{ route('profile-update') }}">Update Profile</a>
                             </div>
                             <div class="col-6 pt-4">
-                                <a class="btn btn-warning text-uppercase w-100" href="">Change Password</a>
+                                <a class="btn btn-warning text-uppercase w-100" href="{{ route('change-password') }}">Change Password</a>
                             </div>
                             <div class="col-6 pt-4">
-                                <a class="btn btn-danger text-uppercase w-100" href="">Delete Account</a>
+                                <a class="btn btn-danger text-uppercase w-100" href="{{ route('delete') }}">Delete Account</a>
                             </div>
                             <div class="col-6 pt-4">
                                 <a class="btn btn-primary text-uppercase w-100" href="{{ route('logout') }}"> Logout</a>

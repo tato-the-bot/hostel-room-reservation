@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\ImageUploadController;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -69,5 +70,90 @@ class StudentController extends Controller
         ];
 
         return view('profile-update', $viewData);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $errors = [];
+        $student = Student::where('id', Auth::guard('web_student')->user()->id)->first();
+
+        if ($request->isMethod('POST')) {
+            // This configures a validator to validate the request.
+            $validator = Validator::make(
+                $request->all(),
+                [   
+                    'password' => ['required', 'confirmed'],
+                ]
+            );
+
+            if (!$validator->fails()) {
+                $isValid = Auth::validate([
+                    'password' => $request->post('old_password'),
+                    'email' => Auth::user()->email,
+                ]);
+
+                if($isValid){
+                    $student->password = Hash::make($request->post('password'));
+                    $student->save();
+    
+                    $request->session()->forget('password_reset_student');
+                    return redirect()->route('home'); 
+                }else{
+                    $errors[] = ['The provided credentials do not match our records.'];
+                }
+                
+            }
+        }
+
+        $viewData = [
+            'errors' => $errors,
+            'validate' => !empty($validator) ? $validator->errors()->getMessages() : []
+        ];
+
+        return view('change-password', $viewData);
+    }
+
+    public function delete(Request $request)
+    {
+        $errors = [];
+        $student = Student::where('id', Auth::guard('web_student')->user()->id)->first();
+
+        if ($request->isMethod('POST')) {
+            // This configures a validator to validate the request.
+            $validator = Validator::make(
+                $request->all(),
+                [   
+                    'password' => ['required'],
+                ]
+            );
+            if (!$validator->fails()) {
+                $isValid = Auth::validate([
+                    'password' => $request->post('password'),
+                    'email' => Auth::user()->email,
+                ]);
+
+                if($isValid){
+                    $student->status = Student::STATUS_FREEZE;
+                    $student->save();
+    
+                    Auth::logout();
+ 
+                    // Stop tracking the session.
+                    $request->session()->invalidate();    
+                    $request->session()->regenerateToken();
+                    return redirect()->route('home'); 
+                }else{
+                    $errors[] = ['The provided credentials do not match our records.'];
+                }
+                
+            }
+        }
+
+        $viewData = [
+            'errors' => $errors,
+            'validate' => !empty($validator) ? $validator->errors()->getMessages() : []
+        ];
+
+        return view('delete', $viewData);
     }
 }

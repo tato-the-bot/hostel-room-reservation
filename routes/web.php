@@ -123,6 +123,10 @@ Route::group(['middleware' => ['auth:web_student']], function() {
     Route::get('profile/view', 'App\Http\Controllers\StudentController@index')->name('profile-view');
     Route::get('profile/update', 'App\Http\Controllers\StudentController@update')->name('profile-update');
     Route::post('profile/update', 'App\Http\Controllers\StudentController@update')->name('profile-update');
+    Route::get('profile/change-password', 'App\Http\Controllers\StudentController@changePassword')->name('change-password');
+    Route::post('profile/change-password', 'App\Http\Controllers\StudentController@changePassword')->name('change-password');
+    Route::get('profile/delete', 'App\Http\Controllers\StudentController@delete')->name('delete');
+    Route::post('profile/delete', 'App\Http\Controllers\StudentController@delete')->name('delete');
 
 
 });

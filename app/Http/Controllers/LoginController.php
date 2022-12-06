@@ -220,7 +220,7 @@ class LoginController extends Controller
             );
 
             if (!$validator->fails()) {
-                $student->password = Hash::make(strtolower($request->post('password')));
+                $student->password = Hash::make($request->post('password'));
                 $student->save();
 
                 $request->session()->forget('password_reset_student');
