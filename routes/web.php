@@ -122,6 +122,8 @@ Route::group(['middleware' => ['auth:web_student']], function() {
 
     Route::get('profile/view', 'App\Http\Controllers\StudentController@index')->name('profile-view');
     Route::get('profile/update', 'App\Http\Controllers\StudentController@update')->name('profile-update');
+    Route::post('profile/update', 'App\Http\Controllers\StudentController@update')->name('profile-update');
+
 
 });
 

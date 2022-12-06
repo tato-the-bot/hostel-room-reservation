@@ -67,7 +67,7 @@ and open the template in the editor.
 
                         <div class="row pt-4">
                             <div class="col-6  pt-4">
-                                <a class="btn text-uppercase btn-primary w-100" href="">Update Profile</a>
+                                <a class="btn text-uppercase btn-primary w-100" href="{{ route('profile-update') }}">Update Profile</a>
                             </div>
                             <div class="col-6 pt-4">
                                 <a class="btn btn-warning text-uppercase w-100" href="">Change Password</a>
