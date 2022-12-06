@@ -148,6 +148,14 @@ Route::group(['middleware' => ['auth:web_agent'], 'as' => 'agent.', 'prefix' => 
     Route::get('reservation/index', 'App\Http\Controllers\Agent\ReservationController@index')->name('reservation-index');
     Route::get('reservation/approve/{reservationId}', 'App\Http\Controllers\Agent\ReservationController@approve')->name('reservation-approve');
     Route::get('reservation/reject/{reservationId}', 'App\Http\Controllers\Agent\ReservationController@reject')->name('reservation-reject');
+
+    Route::get('profile/view', 'App\Http\Controllers\Agent\AgentController@index')->name('profile-view');
+    Route::get('profile/update', 'App\Http\Controllers\Agent\AgentController@update')->name('profile-update');
+    Route::post('profile/update', 'App\Http\Controllers\Agent\AgentController@update')->name('profile-update');
+    Route::get('profile/change-password', 'App\Http\Controllers\Agent\AgentController@changePassword')->name('change-password');
+    Route::post('profile/change-password', 'App\Http\Controllers\Agent\AgentController@changePassword')->name('change-password');
+    Route::get('profile/delete', 'App\Http\Controllers\Agent\AgentController@delete')->name('delete');
+    Route::post('profile/delete', 'App\Http\Controllers\Agent\AgentController@delete')->name('delete');
 });
 
 // Admin routes
