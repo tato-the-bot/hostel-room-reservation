@@ -68,6 +68,7 @@ and open the template in the editor.
                                     {{ App\Models\Student::STATUS_TEXT[$student->status] }}
                                 </td>
                                 <td>
+                                    <a href="{{ route('admin.view-student', $student->id) }}" class="btn btn-primary">View</a>
                                     @if ($student->status == App\Models\Student::STATUS_UNVERIFIED || $student->status == App\Models\Student::STATUS_FREEZE)
                                     <a href="{{ route('admin.users-activate-student', $student->id) }}" class="btn btn-primary">Activate</a>
                                     @elseif ($student->status == App\Models\Student::STATUS_ACTIVE)
@@ -126,6 +127,7 @@ and open the template in the editor.
                                     {{ App\Models\Agent::STATUS_TEXT[$agent->status] }}
                                 </td>
                                 <td>
+                                    <a href="{{ route('admin.view-agent', $agent->id) }}" class="btn btn-primary">View</a>
                                     @if ($agent->status == App\Models\Agent::STATUS_UNVERIFIED || $agent->status == App\Models\Agent::STATUS_FREEZE)
                                     <a href="{{ route('admin.users-activate-agent', $agent->id) }}" class="btn btn-primary">Activate</a>
                                     @elseif ($agent->status == App\Models\Agent::STATUS_ACTIVE)

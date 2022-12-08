@@ -69,4 +69,24 @@ class UserController extends Controller
 
         return redirect()->route('admin.users-index');
     }
+
+    public function viewStudent(Request $request, $studentId)
+    {   
+        $student = Student::find($studentId);
+        
+        return view('admin.view-student', [
+            'student' => $student,
+        ]);
+
+    }
+
+    public function viewAgent(Request $request, $agentId)
+    {   
+        $agent = Agent::find($agentId);
+
+        return view('admin.view-agent', [
+            'agent' => $agent,
+        ]);
+       
+    }
 }
