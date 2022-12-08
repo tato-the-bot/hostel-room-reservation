@@ -186,7 +186,7 @@ and open the template in the editor.
                         <div class="row pt-4 justify-content-center">
                             <div class="col-8">
                                 <strong>Comment :</strong>
-                                <textarea class="form-control" name="comment" rows="4" cols="50"></textarea>
+                                <textarea class="form-control" name="comments" rows="4" cols="50"></textarea>
                             </div>
                         </div>
                         <div class="row pt-4 justify-content-center pb-5">
