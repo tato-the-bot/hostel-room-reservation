@@ -131,7 +131,6 @@ Route::group(['middleware' => ['auth:web_student']], function() {
     Route::get('profile/delete', 'App\Http\Controllers\StudentController@delete')->name('delete');
     Route::post('profile/delete', 'App\Http\Controllers\StudentController@delete')->name('delete');
 
-
 });
 
 // Agent routes
@@ -175,4 +174,9 @@ Route::group(['middleware' => ['auth:web_admin'], 'as' => 'admin.', 'prefix' => 
     Route::get('users/agent/activate/{agentId}', 'App\Http\Controllers\Admin\UserController@activateAgent')->name('users-activate-agent');
     Route::get('users/agent/activate/{agentId}', 'App\Http\Controllers\Admin\UserController@deactivateAgent')->name('users-deactivate-agent');
 
+    Route::get('profile/view', 'App\Http\Controllers\Admin\AdminController@index')->name('profile-view');
+    Route::get('profile/update', 'App\Http\Controllers\Admin\AdminController@update')->name('profile-update');
+    Route::post('profile/update', 'App\Http\Controllers\Admin\AdminController@update')->name('profile-update');
+    Route::get('profile/change-password', 'App\Http\Controllers\Admin\AdminController@changePassword')->name('change-password');
+    Route::post('profile/change-password', 'App\Http\Controllers\Admin\AdminController@changePassword')->name('change-password');
 });
