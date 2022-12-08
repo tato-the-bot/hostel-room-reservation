@@ -24,7 +24,7 @@ class FeedbackController extends Controller
             $feedbacks = new Feedback;
             $feedbacks->name = $request->get('name');
             $feedbacks->rate = $request->get('rate');
-            $feedbacks->comments = $request->get('feedback');
+            $feedbacks->comments = $request->get('comments');
             $feedbacks->save();
             return redirect()->back()->with('flash_msg_success','Your feedback has been submitted Successfully,');        
         }

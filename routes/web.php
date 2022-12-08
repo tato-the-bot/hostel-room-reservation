@@ -175,4 +175,5 @@ Route::group(['middleware' => ['auth:web_admin'], 'as' => 'admin.', 'prefix' => 
     Route::get('users/agent/activate/{agentId}', 'App\Http\Controllers\Admin\UserController@activateAgent')->name('users-activate-agent');
     Route::get('users/agent/activate/{agentId}', 'App\Http\Controllers\Admin\UserController@deactivateAgent')->name('users-deactivate-agent');
 
+    Route::get('feedbacks', 'App\Http\Controllers\Admin\FeedbackController@index')->name('feedback-index');
 });
