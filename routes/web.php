@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $rooms = \App\Models\Room::limit(4)->get();
+
+    return view('welcome', ['rooms' => $rooms]);
 })->name('home');
 
 Route::get('/about-us', function () {

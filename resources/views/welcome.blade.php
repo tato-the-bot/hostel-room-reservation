@@ -135,7 +135,7 @@ and open the template in the editor.
                                 a hostel before a new semester comes, and also provides an opportunity for the agent 
                                 to rent their room. </h3>
                             <div class="button" style="margin-top: 50px;">
-                                <a href="aboutUs.php" 
+                                <a href="{{ route('about-us') }}" 
                                    style="background-color: #3d3d3d;
                                    padding: 12px 40px;
                                    text-decoration: none;
@@ -146,14 +146,34 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="image-section" style="float: left;width: 40%">
-                        <img src="{{ asset('images/myimage.png') }}" alt="about us">
+                        <img src="{{ asset('images/aboutus.jpg') }}" alt="about us">
                     </div>
                 </div>
             </div>
         </section>
 
+        <!----gallery---->
+        <section id="section-2" style="background: grey">
+            <div class="container-fluid" style="padding-left: 100px; padding-right: 100px;">
+                <div class="row">
+                    @foreach ($rooms as $room)
+                    <div class="col-3 my-4 d-flex justify-content-center">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ $room->image }}" height="250" width="250" class="card-img-top" >
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $room->room_title }}</h5>
+                                <p class="card-text">{{ Str::limit($room->room_desc, 100, ' (...)'); }} </p>
+                                <a href="{{ route('room-view', $room->id) }}" class="btn btn-primary">View Room</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
         <!--Feedback Section-->
-        <section id="section-4" style="background: lightgrey;">
+        <section id="section-4">
             <div class="section">
                 <div class="container" style="padding-top:75px;">
                     <div class="title">
