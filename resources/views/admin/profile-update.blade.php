@@ -42,7 +42,7 @@ and open the template in the editor.
                                     Name :
                                 </div>
                                 <div class="col-9">
-                                    <input name="name" class="form-control" type="text" value="{{ $admin->name }}">
+                                    <input name="name" class="form-control" type="text" value="{{ $admin->name }}" required>
                                 </div>
                             </div>
 
@@ -51,7 +51,7 @@ and open the template in the editor.
                                     Email :
                                 </div>
                                 <div class="col-9">
-                                    <input name="email" class="form-control" type="text" value="{{ $admin->email }}">
+                                    <input name="email" class="form-control" type="email" value="{{ $admin->email }}" required>
                                 </div>
                             </div>
 
@@ -60,7 +60,7 @@ and open the template in the editor.
                                     Phone No :
                                 </div>
                                 <div class="col-9">
-                                    <input name="phone_number" class="form-control" type="text" value="{{ $admin->phone_number }}">
+                                    <input name="phone_number" class="form-control" type="text" value="{{ $admin->phone_number }}" required>
                                 </div>
                             </div>
                             <div class="row pt-5">
