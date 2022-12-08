@@ -21,6 +21,9 @@ Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
 
+//Feedback
+Route::post('feedback/', 'App\Http\Controllers\FeedbackController@store')->name('feedback-create');
+
 // Student login page
 Route::get('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
 Route::post('student/login', 'App\Http\Controllers\LoginController@login')->name('student.login');
@@ -156,6 +159,8 @@ Route::group(['middleware' => ['auth:web_agent'], 'as' => 'agent.', 'prefix' => 
     Route::post('profile/change-password', 'App\Http\Controllers\Agent\AgentController@changePassword')->name('change-password');
     Route::get('profile/delete', 'App\Http\Controllers\Agent\AgentController@delete')->name('delete');
     Route::post('profile/delete', 'App\Http\Controllers\Agent\AgentController@delete')->name('delete');
+
+    // Route::get('feedback/', 'App\Http\Controllers\Agent\FeedbackController@store')->name('feedback-create');
 });
 
 // Admin routes

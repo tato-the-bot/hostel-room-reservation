@@ -6,16 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feedback extends Model
 { 
+    protected $table = 'feedbacks';
 
     protected $fillable = [
-        'agent_id',
+        'name',
         'rate', 
         'comments',
     ];
-
-    public function agent()
-    {
-        return $this->hasOne(Agent::class, 'id', 'agent_id');
-    }
-
 }

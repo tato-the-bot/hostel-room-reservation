@@ -15,12 +15,10 @@ class CreateFeedbacksTable extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('agent_id');
             $table->integer('rate');
+            $table->string('name');
             $table->string('comments')->nullable();
             $table->timestamps();
-
-            $table->foreign('agent_id')->references('id')->on('agents');
         });
     }
 
