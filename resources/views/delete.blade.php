@@ -2,15 +2,17 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Change Password</title>
+        <title>Delete Account</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/loginSignUp.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     </head>
     <body>
-        <div class="fp-page">
-            <form method="POST" autocomplete="off">
+        <div class="fp-page">   
+            <form id="delete-form" method="POST" autocomplete="off">
                 @csrf
                 <h2 class="title">Delete Account</h2>
                 
@@ -24,18 +26,18 @@
 
                 <label>Enter your password</label>
                 <input class="form_box" type="password" name="password" placeholder="Enter your password" required><br><br>
-                <button class="btn" type="submit" id="delete">Confirm</button>
-            </form>
-            <script>
-                $('#delete').click(function(e) {
-                    e.preventDefault();
-                    if (confirm('Are you sure you want to delete the account?')) {
-                        location.href = "{{ route('delete') }}";
-                    } else {
-                        return false;
-                    }
-                });
+                <button id="delete" class="btn" href="{{ route('delete') }}" >Confirm</button>
+                <script>
+                    $('#delete').click(function(e) {
+                        e.preventDefault();
+                        if (confirm('Are you sure you want to delete the account?')) {
+                            $('#delete-form').submit();
+                        } else {
+                            return false;
+                        }
+                    });
             </script>
+            </form>
         </div>
     </body>
 </html>
