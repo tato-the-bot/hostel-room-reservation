@@ -51,7 +51,7 @@ and open the template in the editor.
             <div class="row">
                 @foreach ($rooms as $room)
                 <div class="col-3 mt-4">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card">
                         <img src="{{ $room->image }}" height="250" width="250" class="card-img-top" >
                         <div class="card-body">
                             <h5 class="card-title">{{ $room->room_title }}</h5>
