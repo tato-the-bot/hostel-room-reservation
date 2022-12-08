@@ -316,7 +316,7 @@ and open the template in the editor.
                                             <div class="rate">
                                                 <input type="radio" id="star5" class="rate" name="rating" value="5"/>
                                                 <label for="star5" title="5 Star">5 stars</label>
-                                                <input type="radio" checked id="star4" class="rate" name="rating" value="4"/>
+                                                <input type="radio" id="star4" class="rate" name="rating" value="4"/>
                                                 <label for="star4" title="4 Star">4 stars</label>
                                                 <input type="radio" id="star3" class="rate" name="rating" value="3"/>
                                                 <label for="star3" title="3 Star">3 stars</label>
