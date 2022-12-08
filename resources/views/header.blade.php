@@ -32,6 +32,7 @@
                 padding: 10px 90px;
                 box-sizing: border-box;
                 background: rgb(204, 204, 255);
+                z-index: 1;
             }
             nav ul{
                 list-style: none;
@@ -213,6 +214,7 @@
                             <li><a href="{{ route('agent.room-index') }}">Rooms</a></li>
                             <li><a href="{{ route('agent.reservation-index') }}">Profile</a></li>
                         @elseif (Auth::guard('web_admin')->user())
+                            <li><a href="{{ route('admin.feedback-index') }}">Feedbacks</a></li>
                             <li><a href="{{ route('admin.report-index') }}">Reports</a></li>
                             <li><a href="{{ route('admin.users-index') }}">Users</a></li>
                         @endif

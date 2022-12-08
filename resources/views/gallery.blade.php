@@ -22,6 +22,7 @@
                 padding: 10px 90px;
                 box-sizing: border-box;
                 background: rgb(204, 204, 255);
+                z-index: 1;
             }
             nav .logo{
                 padding: 22px 20px;

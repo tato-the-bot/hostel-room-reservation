@@ -15,7 +15,7 @@ class FeedbackController extends Controller
     {
         $feedbacks = Feedback::all();
 
-        return view('admin.rating-index', [
+        return view('admin.feedback-index', [
             'feedbacks' => $feedbacks
         ]);
     }
