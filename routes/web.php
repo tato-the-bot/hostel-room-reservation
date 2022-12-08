@@ -159,7 +159,9 @@ Route::group(['middleware' => ['auth:web_agent'], 'as' => 'agent.', 'prefix' => 
     Route::get('profile/delete', 'App\Http\Controllers\Agent\AgentController@delete')->name('delete');
     Route::post('profile/delete', 'App\Http\Controllers\Agent\AgentController@delete')->name('delete');
 
-    // Route::get('feedback/', 'App\Http\Controllers\Agent\FeedbackController@store')->name('feedback-create');
+    Route::get('reporting', 'App\Http\Controllers\Agent\ReportController@index')->name('report-index');
+    Route::get('reporting/transactions-all', 'App\Http\Controllers\Agent\ReportController@transactionsAll')->name('report-transactions-all');
+    Route::get('reporting/reservations-all', 'App\Http\Controllers\Agent\ReportController@reservationsAll')->name('report-reservations-all');
 });
 
 // Admin routes
