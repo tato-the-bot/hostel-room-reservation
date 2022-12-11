@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Reports</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
     </head>
 
     <body>
@@ -16,7 +17,7 @@ and open the template in the editor.
         
         <div class="room" style="margin-top:150px">
             <h1 style="font-size: 30px;color: black;font-weight: bold;text-align: center;">Reports</h1>
-            <hr style="width:90%;border-top: 2px groove #8c8c8c;">
+            <hr style="width:90%;border-top: 2px groove #8c8c8c;margin-left: 75px;">
         </div>
 
         <div class="container pb-4">

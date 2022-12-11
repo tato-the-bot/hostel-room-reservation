@@ -15,7 +15,7 @@
                 <img src="{{ asset('images/logo.png') }}" alt="logo">
             </a>
             <h2 class = "title" >Choose where to log in</h2>
-            <button type="button" onclick="location.href = '{{ route('student.login') }}'" class="btn">Log in as Customer</button>
+            <button type="button" onclick="location.href = '{{ route('student.login') }}'" class="btn">Log in as Student</button>
             <button type="button" onclick="location.href = '{{ route('agent.login') }}'" class="btn">Log in as Agent</button>
             <button type="button" onclick="location.href = '{{ route('admin.login') }}'" class="btn">Log in as Admin</button>
         </div>

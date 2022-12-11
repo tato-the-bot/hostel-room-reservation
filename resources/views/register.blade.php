@@ -32,7 +32,7 @@
                 @endif
 
                 <input type = "text" class="form_input" name="name" placeholder="Enter Your Name" value="{{ $name }}" required><br><br>
-                <input type = "text" class="form_input" name="student_id" placeholder="Student ID (Eg. 2104843)" value="{{ $student_id }}"  required><br><br>
+                <input type = "number" class="form_input" name="student_id" placeholder="Student ID (Eg. 2104843)" value="{{ $student_id }}"  required><br><br>
                 <input type = "email" class="form_input" name="email" placeholder="Email" value="{{ $email }}"  required><br><br>
                 <input type = "tel" class="form_input" name="phone_number" placeholder="Phone Number (Eg. 0123456789)" value="{{ $phone_number }}"  pattern="^(\+?6?01)[02-46-9]-*[0-9]{7}$|^(\+?6?01)[1]-*[0-9]{8}$" required><br><br>
                 <input type ="password" class="form_input" name="password" placeholder="Password" required><br><br>

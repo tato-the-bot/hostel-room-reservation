@@ -23,6 +23,18 @@ Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
 
+Route::get('/term-and-condition', function () {
+    return view('term-and-condition');
+})->name('term-and-condition');
+
+Route::get('/faq', function () {
+    return view('faq');
+})->name('faq');
+
+Route::get('/chatbot', function () {
+    return view('chatbot');
+})->name('chatbot');
+
 //Feedback
 Route::post('feedback/', 'App\Http\Controllers\FeedbackController@store')->name('feedback-create');
 

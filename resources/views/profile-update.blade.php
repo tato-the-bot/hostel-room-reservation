@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Update Profile</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
     </head>
 
     <body>
@@ -16,7 +17,7 @@ and open the template in the editor.
         
         <div class="room" style="margin-top:150px">
             <h1 style="font-size: 30px;color: black;font-weight: bold;text-align: center;">Update Profile</h1>
-            <hr style="width:90%;border-top: 2px groove #8c8c8c;">
+            <hr style="width:90%;border-top: 2px groove #8c8c8c;margin-left: 75px;">
         </div>
         <form class="container pb-4" method="POST" action="{{ route('profile-update') }}" enctype="multipart/form-data">
             @if(count($errors) > 0) 
@@ -60,7 +61,7 @@ and open the template in the editor.
                                     Phone No :
                                 </div>
                                 <div class="col-9">
-                                    <input name="phone_number" class="form-control" type="text" value="{{ $student->phone_number }}" required>
+                                    <input name="phone_number" class="form-control" type="tel" value="{{ $student->phone_number }}" pattern="^(\+?6?01)[02-46-9]-*[0-9]{7}$|^(\+?6?01)[1]-*[0-9]{8}$" required>
                                 </div>
                             </div>
                             <div class="row pt-5">

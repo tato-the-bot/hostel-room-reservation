@@ -39,7 +39,7 @@
                 <input type="checkbox" onclick="myFunction()">Show password
 
                 <div class ="forget_pwd" style="margin-top: -30px;">
-                    <a href ="{{ route('agent.login.forget-password') }}" id="forget-line">Forgot password?</a>
+                    <a href ="{{ route('student.login.forget-password') }}" id="forget-line">Forgot password?</a>
                 </div> 
 
                 <button type ="submit" class="btn" name="login">Log In</button>

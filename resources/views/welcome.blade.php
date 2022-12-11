@@ -110,7 +110,7 @@ and open the template in the editor.
         <div class="banner-area">
             <div class="content-area">
                 <div class="content">
-                    <h1>TUNKU ABDUL RAHMAN UNIVERSITY COLLEGE KL CAMMPUS HOSTEL</h1>
+                    <h1 style="font-size: 50px;margin-top:85px;">TUNKU ABDUL RAHMAN UNIVERSITY COLLEGE KL CAMPUS HOSTEL</h1>
                     <section id="section-1">
                         <a id="scroll-btn" href="#section-2">
                             <button class="btn">Click View More</button>
@@ -122,15 +122,15 @@ and open the template in the editor.
         </div>
 
         <!----about us---->
-        <section id="section-2">
+        <section id="section-2" style="margin-top: -20px;margin-bottom: 40px;">
             <div class="section">
                 <div class="container">
                     <div class="content-section" style="float: right; width: 55%;">
                         <div class="content">
                             <div class="title">
-                                <h1 style="color: #000;font-size: 40px;">Our Hostel</h1>
+                                <h2 style="color: #000;font-size: 30px;">Our Hostel</h2>
                             </div>
-                            <h3>Hostel Management System was founded in November of 2021 by TARC students. 
+                            <h3 style="font-size:23px; padding-top: 25px">Hostel Management System was founded in November of 2021 by TARC students. 
                                 It is a platform that provides room reservation service to a student who is finding 
                                 a hostel before a new semester comes, and also provides an opportunity for the agent 
                                 to rent their room. </h3>
@@ -152,7 +152,7 @@ and open the template in the editor.
             </div>
         </section>
 
-        <!----gallery---->
+        <!----room---->
         <section id="section-2" style="background: grey">
             <div class="container-fluid" style="padding-left: 100px; padding-right: 100px;">
                 <div class="row">

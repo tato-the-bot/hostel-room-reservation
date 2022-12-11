@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Room Details</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
         <style>
             .img-rounded{
                 border-radius: 50%;
@@ -110,7 +111,7 @@ and open the template in the editor.
         
         <div class="room" style="margin-top:150px">
             <h1 style="font-size: 30px;color: black;font-weight: bold;text-align: center;">Room Details</h1>
-            <hr style="width:90%;border-top: 2px groove #8c8c8c;">
+            <hr style="width:90%;border-top: 2px groove #8c8c8c;margin-left: 75px;">
         </div>
 
         <div class="container pb-4">
@@ -123,10 +124,10 @@ and open the template in the editor.
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-6">
-                                <h3>Details</h3>
+                                <h4>Details</h4>
                             </div>
                             <div class="col-6">
-                                <h3>Remark</h3>
+                                <h4>Remark</h4>
                             </div>
                         </div>
                         <div class="row">
@@ -140,10 +141,10 @@ and open the template in the editor.
 
                         <div class="row pt-4">
                             <div class="col-6">
-                                <h3>Deposit</h3>
+                                <h4>Deposit</h4>
                             </div>
                             <div class="col-6">
-                                <h3>Date Posted</h3>
+                                <h4>Date Posted</h4>
                             </div>
                         </div>
                         <div class="row">
@@ -157,10 +158,10 @@ and open the template in the editor.
 
                         <div class="row pt-4">
                             <div class="col-6">
-                                <h3>Monthly Rental</h3>
+                                <h4>Monthly Rental</h4>
                             </div>
                             <div class="col-6">
-                                <h3>Location</h3>
+                                <h4>Location</h4>
                             </div>
                         </div>
                         <div class="row">
@@ -183,9 +184,9 @@ and open the template in the editor.
                 </div>
 
                 <div class="pt-4 ">
-                    <h2 style="font-size: 30px;color: black;font-weight: bold;text-align: center;">Reviews</h1>
+                    <h2 style="font-size: 30px;color: black;font-weight: bold;text-align: center;padding-top: 50px">Reviews</h1>
 
-                    <div class="text-center pt-5">
+                    <div class="text-center pt-5" style="margin-top: -20px">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
                             Write Your Review
                         </button>

@@ -25,7 +25,7 @@
                 <input class="form_box" type="password" name="old_password" placeholder="Enter old password" required><br><br>
                 <input class="form_box" type="password" name="password" placeholder="Enter new password" required><br><br>
                 <input class="form_box" type="password" name="password_confirmation" placeholder="Confirm password" required><br><br>
-                <button class="btn" type="submit" name="change-password">Confirm Change Password</button>
+                <button class="btn" type="submit" name="change-password" onclick="'{{ route('student.login') }}'">Confirm Change Password</button>
             </form>
         </div>
     </body>

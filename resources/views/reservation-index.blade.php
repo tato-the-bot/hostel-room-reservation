@@ -10,6 +10,7 @@ and open the template in the editor.
         <title>Reservations</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://www.paypal.com/sdk/js?client-id=AQ17c7S81QGW3sDfkocNtUKKKX4qbMgLTtuh5jn99sB4paqE71MdofBjzukZmhwz2TJDaDsDX1BPP4Ro&currency=MYR"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>    
     </head>
 
     <body>
@@ -21,7 +22,7 @@ and open the template in the editor.
             <div style="display:flex; justify-content:flex-end; width:100%; padding-right:100px;">
                 <a href="{{ route('profile-view') }}" class="btn btn-primary">Manage Profile</a>
             </div>
-            <hr style="width:90%;border-top: 2px groove #8c8c8c; margin: 1rem auto !important;">
+            <hr style="width:85%;border-top: 2px groove #8c8c8c; margin: 1rem auto !important;">
         </div>
 
         <div class="container pb-4">

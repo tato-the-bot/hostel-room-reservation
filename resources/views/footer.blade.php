@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
     <body>
         
          <footer class="footer">
-            <div class="container">
+             <div class="container" style="margin-left: 250px">
                 <div class="row">
                     <div class="footer-col">
                         <h4>Hostel Management System</h4>
@@ -19,16 +19,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                     <div class="footer-col">
                         <h4>Quick Link</h4>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Room</a></li>
-                            <li><a href="#">Booking History</a></li>
+                            <li><a href="{{ route('about-us') }}">About Us</a></li>
+                            <li><a href="{{ route('room-index') }}">Room</a></li>
+                            <li><a href="{{ route('reservation-index') }}">Booking History</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>Get Help</h4>
                         <ul>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Term and Conditions</a></li>
+                            <li><a href="{{ route('faq') }}">FAQ</a></li>
+                            <li><a href="{{ route('term-and-condition') }}">Term and Conditions</a></li>
                             <li><a href="#">Chatbot</a></li>
                         </ul>
                     </div>

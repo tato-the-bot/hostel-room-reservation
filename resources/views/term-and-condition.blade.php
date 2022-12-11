@@ -3,10 +3,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>About Us</title>
+        <title>Term and Condition</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" 
               integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
-        
+
         <style>
             body{
                 margin: 0px;
@@ -70,36 +70,6 @@
                 display: block;
                 /*margin: auto;*/
                 padding-top: 50px;
-            }
-            .content-section{
-                float: right;
-                width: 55%;
-            }
-            .image-section{
-                float: left;
-                width: 40%
-            }
-            .image-section img{
-                width: 100%;
-                height: auto;
-            }
-            .content-section .title{
-                text-transform: uppercase;
-                font-size: 15px;
-            }
-            .content-section .content h3{
-                color: #3d3d5c;
-                font-size: 23px;
-                font-family: Lucida Sans Unicode;
-                padding-top: 37px;
-            }
-            .content-section .social{
-                margin-top: 60px;
-            }
-            .content-section .social i{
-                color: rgb(153, 0, 0);
-                font-size: 30px;
-                padding: 0px 10px;
             }
             /*--footer--*/
             .footer{
@@ -179,36 +149,59 @@
 
     <body>
         @include('header')
-
         <div class="aboutUs" style="margin-top:150px">
-            <h1 style="font-size: 30px;color: black;font-weight: bold;text-align: center;">About Us</h1>
-            <hr style="width:90%;border-top: 2px groove #8c8c8c; margin-left: 75px;">
+            <h1 style="font-size: 30px;color: black;font-weight: bold;text-align: center;">Terms & Conditions</h1>
+            <hr style="width:80%;border-top: 2px groove #8c8c8c; margin-left: 140px;">
         </div>
 
-        <div class="section"  style="margin-top:-120px;">
+        <div class="section"  style="margin-top:-170px;">
             <div class="container">
-                <div class="content-section">
-                    <div class="content">
-                        <div class="title">
-                            <h2>Our Hostel</h2>
-                        </div>
-                        <h3>Hostel Management System was founded in November of 2021 by TARC students. 
-                            It is a platform that provides room reservation service to a student who is finding 
-                            a hostel before a new semester comes, and also provides an opportunity for the agent 
-                            to rent their room. </h3>
-                    </div>
-                    <div class="social">
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="image-section">
-                    <img src="{{ asset('images/aboutus.jpg') }}" alt="about us">
-                </div>
+
+                <h5>Use of our website</h5>
+                <p>The use of Hostel Management website is subject to the terms and conditions set forth below. 
+                    Please read the following Website Terms and Conditions, which relate to information regarding 
+                    general use of our websites. By using our websites, you are agreeing to these Terms and Conditions 
+                    whether as a guest or registered user. By using our sites you are indicating you accept these terms 
+                    of use and that you agree to abide by them. From time to time we may change these Terms and Conditions, 
+                    and will post revisions on this website. We recommend that you read these Terms and Conditions prior to 
+                    using our sites and thereafter regularly review any changes and you are responsible for doing so.</p>
+
+                <h5>Rules and Regulation</h5>
+                <p>1. Our system temporarily only accepts hostel or dormitory reservations for full-time students.<br>
+                    2. The University College and Hostel Management reserve the right to reject any hostel application.<br>
+                    3. Reservation refers to an application for submission, approval, payment of deposit, and registration 
+                    (check-in) within the specified time.</p>
+
+                <h5>Intellectual Property</h5>
+                <p>The content, layout, design, data, databases and graphics on this website are protected by Malaysian 
+                    and other international intellectual property laws and licensors. Unless expressly permitted in writing 
+                    in a licence agreement , no part of the website may be reproduced, stored in any medium, including but not 
+                    limited to a retrieval system or transmitted, in any form or by any means (electronic, mechanical, photocopying, 
+                    recording, broadcasting) nor, shown in public other than websites.<br><br>
+                    Any material you upload to our site will be deemed non-confidential and non-proprietary (unless otherwise 
+                    stated on the site or in our Privacy Policy), and you grant us a transferable, royalty-free, worldwide, 
+                    irrevocable license to use, reproduce, distribute, edit, modify, disclose, sublicense to third parties and 
+                    create derivative works of any such material, in whole or in part, in any medium, for any purpose. We may remove,
+                    edit or modify any such material at any time without notice to you. To the fullest extent permitted by law, moral 
+                    rights attach to any material and we waive those rights.<br><br>
+                    We also reserve the right to disclose your identity to any third party who claims that any material you post or 
+                    upload to any of our Sites violates their rights, including but not limited to their intellectual property rights,
+                    rights of reputation, or their rights to privacy.</p>
+
+                <h5>Prohibited Conducts</h5>
+                <p>You agree that you shall not:<br>
+                    - Directly or indirectly attempt or actually disrupt, impair or interfere with, alter or modify Hostel 
+                    Management's Website Content. </p>
+
+                <h5>Legal Disclaimer For Web Site Content</h5>
+                <p style="padding-bottom: 50px">Information on this Web site is provided for information purposes only. Any information obtained from this 
+                    Web site should be reviewed by an appropriate authority to determine its applicability to your particular needs. 
+                    Great care has been taken to maintain the accuracy of the information provided on this Web site. However, 
+                    Hostel Management and their employees are not responsible for errors or any untoward consequences arising from 
+                    your use of this information.</p>
+
             </div>
         </div>
-
         @include('footer')
     </body>
 </html>

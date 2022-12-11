@@ -8,23 +8,24 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Update Profile</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
     </head>
 
     <body>
-        
+
         @include('header')
-        
+
         <div class="room" style="margin-top:150px">
             <h1 style="font-size: 30px;color: black;font-weight: bold;text-align: center;">Update Profile</h1>
             <hr style="width:90%;border-top: 2px groove #8c8c8c;">
         </div>
         <form class="container pb-4" method="POST" action="{{ route('agent.profile-update') }}" enctype="multipart/form-data">
             @if(count($errors) > 0) 
-                <div class="alert alert-danger">
-                    @foreach ($errors as $error) 
-                        <div>{{$error[0]}}</div>
-                    @endforeach
-                </div>
+            <div class="alert alert-danger">
+                @foreach ($errors as $error) 
+                <div>{{$error[0]}}</div>
+                @endforeach
+            </div>
             @endif
 
             @csrf
@@ -74,6 +75,6 @@ and open the template in the editor.
             </div>
         </form>
     </body>
-    
+
     @include('footer')
 </html>
