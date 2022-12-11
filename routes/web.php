@@ -35,6 +35,16 @@ Route::get('/chatbot', function () {
     return view('chatbot');
 })->name('chatbot');
 
+Route::post('/chatbot/message', function (\Illuminate\Http\Request $request) {
+    $reply = \App\Models\Chatbot::where('queries', 'LIKE', '%' . $request->post('text') . '%')->first();
+
+    if ($reply) {
+        return $reply->replies;
+    } 
+
+    return "Sorry can't be able to understand you!<br><br>You can get more info by :<br>Email : huelsehotel22@gmail.com<br>Phone : +03 (06)888-99-66";
+})->name('chatbot-message');
+
 //Feedback
 Route::post('feedback/', 'App\Http\Controllers\FeedbackController@store')->name('feedback-create');
 
