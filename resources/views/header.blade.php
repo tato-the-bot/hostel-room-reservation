@@ -194,10 +194,34 @@
                 color: #24262b;
                 background-color: #fff;
             }
+            .chat-bubble {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                width: 80px;
+                height: 80px;
+                background-color: #eee;
+                border-radius: 40px;
+                z-index: 100;
+            }
+            .chat-bubble img {
+                display: block;
+                margin: 0 auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                max-width: 80px;
+                max-height: 80px;
+                border-radius: 40px;
+            }
         </style>
     </head>
 
     <body>
+        <div class="chat-bubble">
+            <a href="{{ route('chatbot') }}"><img src="{{ asset('images/chatbot.jpg') }}"></a>
+        </div>
           <!----navigate---->
         <nav>
             <div class="logo">Hostel Management System</div>
