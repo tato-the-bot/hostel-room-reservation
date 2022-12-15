@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Reservation;
+use App\Models\Room;
 use App\Models\Transaction;
 use App\Models\User;
 
@@ -109,6 +110,11 @@ class ReservationController extends Controller
                 $reservation->transaction_id = $transaction->id;
                 $reservation->status = Reservation::STATUS_TYPE_PAID_DEPOSIT;
                 $reservation->save();
+
+                $room = Room::where('id', $reservation->room_id)
+                    ->first();  
+                $room->status = Room::STATUS_RESERVED;
+                $room->save();
 
                 return redirect()->route('reservation-index');
             }
