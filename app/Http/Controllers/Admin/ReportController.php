@@ -12,7 +12,9 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
+        // Query to get total transaction amount
         $totalTransactionAmount = Transaction::sum('amount');
+        // Query to count total reservation made
         $totalReservations = Reservation::count();
 
         $viewData = [
@@ -25,7 +27,9 @@ class ReportController extends Controller
 
     public function transactionsAll(Request $request)
     {
+        // Query to get all transaction
         $transactions = Transaction::all();
+        // Query to get total transaction amount
         $totalTransactionAmount = Transaction::sum('amount');
 
         $viewData = [
@@ -38,7 +42,9 @@ class ReportController extends Controller
 
     public function reservationsAll(Request $request)
     {
+        // Query to get all rooms 
         $rooms = Room::all();
+        // Query to count total reservation made
         $totalReservations = Reservation::count();
 
         $viewData = [

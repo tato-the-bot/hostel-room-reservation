@@ -14,9 +14,11 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
+        // Query to get admin details
         $admin = Admin::where('id', Auth::guard('web_admin')->user()->id)
             ->first();
 
+        // Return admin details
         return view('admin.profile-view', [
             'admin' => $admin
         ]);
@@ -24,8 +26,10 @@ class AdminController extends Controller
 
     public function update(Request $request)
     {
-
+        // If HTTP method = POST
         if ($request->isMethod('POST')) {
+
+             // This configures a validator to validate the request.
             $validator = Validator::make(
                 $request->all(),
                 [   
@@ -35,18 +39,25 @@ class AdminController extends Controller
                     'phone_number' => ['required', 'string'],
                 ]
             );
-
+            // If validating input is not fail 
             if (!$validator->fails()) {
+                // Get admin data
                 $admin = Admin:: where('id', Auth::guard('web_admin')->user()->id)
                     ->first();
-
+                // If input image is not NULL 
                 if ($request->image != NULL){
+                    // change image name to current upload time
                     $imageName = time().'.'.$request->image->extension();  
+                    // save image to public path
                     $request->image->move(public_path('storage/images'), $imageName);
+                    // store img path into a variable
                     $imgURL = '/storage/images/'.$imageName;
+                // If in admin data originally has img 
                 } else if($admin->image != NULL){
+                    // Keep the img
                     $imgURL = $admin->image;
                 }else{
+                    // If input img is NULL then the URL would be NULL (No default img)
                     $imgURL = NULL;
                 }
 
@@ -55,12 +66,14 @@ class AdminController extends Controller
                 $admin->phone_number = $request->get('phone_number');
                 $admin->image = $imgURL;
 
+                // Update admin profile
                 $admin->save();
                 
                 return redirect()->route('admin.profile-view');
             }
         }
 
+        // Query to get admin details 
         $admin = Admin::where('id', Auth::guard('web_admin')->user()->id)
             ->first();
 
@@ -75,6 +88,7 @@ class AdminController extends Controller
     public function changePassword(Request $request)
     {
         $errors = [];
+        // Query to get admin details 
         $admin = Admin::where('id', Auth::guard('web_admin')->user()->id)->first();
 
         if ($request->isMethod('POST')) {
@@ -87,17 +101,20 @@ class AdminController extends Controller
             );
 
             if (!$validator->fails()) {
+                // Validate if input matches the database
                 $isValid = Auth::validate([
                     'password' => $request->post('old_password'),
                     'email' => Auth::user()->email,
                 ]);
 
+                // If match, update database 
                 if($isValid){
                     $admin->password = Hash::make($request->post('password'));
                     $admin->save();
     
                     $request->session()->forget('password_reset_admin');
-                    return redirect()->route('home'); 
+                    return redirect()->route('home');
+                // Else, display error 
                 }else{
                     $errors[] = ['The provided credentials do not match our records.'];
                 }

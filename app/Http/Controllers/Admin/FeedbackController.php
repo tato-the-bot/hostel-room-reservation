@@ -13,6 +13,7 @@ class FeedbackController extends Controller
 {
     public function index(Request $request)
     {
+        // Query to get all feedbacks
         $feedbacks = Feedback::all();
 
         return view('admin.feedback-index', [
