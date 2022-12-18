@@ -175,9 +175,15 @@ and open the template in the editor.
 
                         <div class="row pt-4">
                             <div class="col-12">
+                                @if($room->status = \App\Models\Room::STATUS_ACTIVE)
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Booking
                                 </button>
+                                @else
+                                <button type="button" class="btn btn-secondary disabled">
+                                    Booking
+                                </button>
+                                @endif
                             </div>
                         </div>
                     </div>

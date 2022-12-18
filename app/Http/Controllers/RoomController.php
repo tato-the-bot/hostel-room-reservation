@@ -15,7 +15,7 @@ class RoomController extends Controller
     public function index(Request $request)
     {
         // Query to get all room with active status
-        $roomQuery = Room::where('status', Room::STATUS_ACTIVE);
+        $roomQuery = Room::whereIn('status',[Room::STATUS_ACTIVE,Room::STATUS_RESERVED]);
 
         // if filter by room type
         if ($request->get('room_type')) {
