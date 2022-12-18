@@ -15,6 +15,7 @@ class ReservationController extends Controller
 {
     public function index(Request $request)
     {   
+        // query to get all reservation made by student
         $reservations = Reservation::where('student_id', Auth::guard('web_student')->user()->id)
             ->get();
 
@@ -25,15 +26,18 @@ class ReservationController extends Controller
 
     public function update(Request $request, $reservationId)
     {   
+        // query to get reservation where status is pending approval
         $reservation = Reservation::where('id', $reservationId)
             ->where('status', Reservation::STATUS_TYPE_PENDING_APPROVAL)
             ->first();
 
+        // If no reservation were made then return to home
         if (empty($reservation)) {
             return redirect('/');
         }
 
         if ($request->isMethod('POST')) {
+            // This configures a validator to validate the request
             $validator = Validator::make(
                 $request->all(),
                 [
@@ -42,7 +46,7 @@ class ReservationController extends Controller
                     'remark' => ['string', 'nullable']
                 ]
             );
-    
+            // If validating input is not fail 
             if (!$validator->fails()) {
                 $reservation->contract_start_date = $request->post('contract_start_date');
                 $reservation->contract_end_date = $request->post('contract_end_date');
@@ -50,7 +54,7 @@ class ReservationController extends Controller
                 $reservation->save();
             }
         }
-
+        // change date format
         $startDate = date('Y-m-d', strtotime($reservation->contract_start_date));
         $endDate = date('Y-m-d', strtotime($reservation->contract_end_date));
 
@@ -67,10 +71,12 @@ class ReservationController extends Controller
 
     public function cancel(Request $request, $reservationId)
     {   
+        // Query to get reservation
         $reservation = Reservation::where('id', $reservationId)
             ->where('status', Reservation::STATUS_TYPE_PENDING_APPROVAL)
             ->first();
 
+        // update reservation status to cancel
         $reservation->status = Reservation::STATUS_TYPE_CANCELLED;
         $reservation->save();
         
@@ -80,14 +86,16 @@ class ReservationController extends Controller
     public function pay(Request $request, $reservationId)
     {   
         if ($request->isMethod('POST')) {
+            // Query to get reservation where status is approve
             $reservation = Reservation::where('id', $reservationId)
                 ->where('status', Reservation::STATUS_TYPE_APPROVED)
                 ->first();
 
+            // If reservation is empty, redirect to reservation index page
             if (empty($reservation)) {
                 return redirect()->route('reservation-index');
             }
-    
+            // This configures a validator to validate the request.
             $validator = Validator::make(
                 $request->all(),
                 [
@@ -96,7 +104,9 @@ class ReservationController extends Controller
                 ]
             );
 
+            // If validation fails, do something.
             if (!$validator->fails()) {
+                // create empty transaction object for new transaction
                 $transaction = new Transaction;
 
                 $transaction->transaction_no = $request->post('transaction_no');
@@ -113,6 +123,7 @@ class ReservationController extends Controller
 
                 $room = Room::where('id', $reservation->room_id)
                     ->first();  
+                // update room status to reserved
                 $room->status = Room::STATUS_RESERVED;
                 $room->save();
 

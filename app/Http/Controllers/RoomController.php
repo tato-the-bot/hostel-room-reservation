@@ -14,16 +14,20 @@ class RoomController extends Controller
 {
     public function index(Request $request)
     {
+        // Query to get all room with active status
         $roomQuery = Room::where('status', Room::STATUS_ACTIVE);
 
+        // if filter by room type
         if ($request->get('room_type')) {
             $roomQuery->where('room_type', $request->get('room_type'));
         }
 
+        // if filter by location
         if ($request->get('location')) {
             $roomQuery->where('location', $request->get('location'));
         } 
 
+        // if filter by search
         if ($request->get('search')) {
             $roomQuery->where('room_title', 'LIKE', '%' . $request->get('search') . '%');
         } 
@@ -40,8 +44,10 @@ class RoomController extends Controller
 
     public function view(Request $request, $roomId)
     {
+        // Query to find room with room ID
         $room = Room::find($roomId);
 
+        // query to get room rating of the room ID 
         $ratings = Rating::where('room_id', $roomId)
             ->get();
 
@@ -54,7 +60,7 @@ class RoomController extends Controller
     public function book(Request $request, $roomId)
     {
         $room = Room::find($roomId);
-
+        // This configures a validator to validate the request
         $validator = Validator::make(
             $request->all(),
             [
@@ -62,7 +68,7 @@ class RoomController extends Controller
                 'duration' => ['required', 'numeric'],
             ]
         );
-
+         // If validating input is not fail 
         if (!$validator->fails()) {
             $reservation = new Reservation;
             $reservation->contract_start_date = $request->get('contract_start_date') . ' 00:00:00';

@@ -14,6 +14,7 @@ class RatingController extends Controller
 
     public function store(Request $request, $roomId)
     {
+        // This configures a validator to validate the request
         $validator = Validator::make(
             $request->all(),
             [
@@ -22,8 +23,10 @@ class RatingController extends Controller
             ]
         );
 
+        // If validating input is not fail 
         if (!$validator->fails()) {
 
+            // Create new rating object to store 
             $review = new Rating;
             $review->student_id = Auth::guard('web_student')->user()->id;
             $review->room_id = $roomId;

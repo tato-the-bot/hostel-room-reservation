@@ -13,13 +13,17 @@ class TransactionController extends Controller
 {
     public function invoice(Request $request, $transactionId)
     {
+        // query to get student ID
         $studentId = Auth::guard('web_student')->user()->id;
 
+        // query to get transaction made by student
         $transaction = Transaction::where('id', $transactionId)
             ->whereRelation('reservation', 'student_id', $studentId)
             ->first();
 
+        // query to get agent ID thru the transaction made by student
         $agent = Agent::find($transaction->reservation->room->agent_id);
+        // query to get room details thru transaction made by student
         $room = $transaction->reservation->room;
 
         if ($transaction) {
