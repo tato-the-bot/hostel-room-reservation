@@ -14,6 +14,7 @@ class AgentController extends Controller
 {
     public function index(Request $request)
     {
+        // Query to get agent details
         $agent = Agent::where('id', Auth::guard('web_agent')->user()->id)
             ->first();
 
@@ -26,6 +27,7 @@ class AgentController extends Controller
     {
 
         if ($request->isMethod('POST')) {
+            // This configures a validator to validate the request.
             $validator = Validator::make(
                 $request->all(),
                 [   
@@ -36,17 +38,26 @@ class AgentController extends Controller
                 ]
             );
 
+            // If validating input is not fail 
             if (!$validator->fails()) {
+                // Get agent data
                 $agent = Agent:: where('id', Auth::guard('web_agent')->user()->id)
                     ->first();
 
+                // If input image is not NULL 
                 if ($request->image != NULL){
+                    // change image name to current upload time
                     $imageName = time().'.'.$request->image->extension();  
+                    // save image to public path
                     $request->image->move(public_path('storage/images'), $imageName);
+                    // store img path into a variable
                     $imgURL = '/storage/images/'.$imageName;
+                // If in agent data originally has img 
                 } else if($agent->image != NULL){
+                    // Keep the img
                     $imgURL = $agent->image;
                 }else{
+                    // If input img is NULL then the URL would be NULL (No default img)
                     $imgURL = NULL;
                 }
 
@@ -55,12 +66,14 @@ class AgentController extends Controller
                 $agent->phone_number = $request->get('phone_number');
                 $agent->image = $imgURL;
 
+                // Update agent profile
                 $agent->save();
                 
                 return redirect()->route('agent.profile-view');
             }
         }
 
+        // Query to get admin details 
         $agent = Agent::where('id', Auth::guard('web_agent')->user()->id)
             ->first();
 
@@ -75,6 +88,7 @@ class AgentController extends Controller
     public function changePassword(Request $request)
     {
         $errors = [];
+        // Query to get agent details 
         $agent = Agent::where('id', Auth::guard('web_agent')->user()->id)->first();
 
         if ($request->isMethod('POST')) {
@@ -87,17 +101,19 @@ class AgentController extends Controller
             );
 
             if (!$validator->fails()) {
+                // Validate if input matches the database
                 $isValid = Auth::validate([
                     'password' => $request->post('old_password'),
                     'email' => Auth::user()->email,
                 ]);
-
+                // If match, update database
                 if($isValid){
                     $agent->password = Hash::make($request->post('password'));
                     $agent->save();
     
                     $request->session()->forget('password_reset_agent');
                     return redirect()->route('home'); 
+                // Else, display error
                 }else{
                     $errors[] = ['The provided credentials do not match our records.'];
                 }
@@ -116,6 +132,7 @@ class AgentController extends Controller
     public function delete(Request $request)
     {
         $errors = [];
+        // Query to get agent details
         $agent = agent::where('id', Auth::guard('web_agent')->user()->id)->first();
 
         if ($request->isMethod('POST')) {
@@ -127,15 +144,18 @@ class AgentController extends Controller
                 ]
             );
             if (!$validator->fails()) {
+                // Validate if input matches the database
                 $isValid = Auth::validate([
                     'password' => $request->post('password'),
                     'email' => Auth::user()->email,
                 ]);
 
+                // If match, freeze agent account
                 if($isValid){
                     $agent->status = Agent::STATUS_FREEZE;
                     $agent->save();
-    
+                    
+                    // Logout the agent
                     Auth::logout();
  
                     // Stop tracking the session.

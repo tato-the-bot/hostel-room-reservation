@@ -14,6 +14,7 @@ class RoomController extends Controller
 {
     public function index(Request $request)
     {
+        // Query to get all rooms created by agent
         $rooms = Room::where('agent_id', Auth::guard('web_agent')->user()->id)
             ->get();
 
@@ -25,7 +26,7 @@ class RoomController extends Controller
     public function update(Request $request, $roomId)
     {
         if ($request->isMethod('POST')) {
-
+            // This configures a validator to validate the request
             $validator = Validator::make(
                 $request->all(),
                 [
@@ -38,17 +39,23 @@ class RoomController extends Controller
                     'remark' => ['nullable','string'],
                 ]
             );
-
+            // If validating input is not fail 
             if (!$validator->fails()) {
+                // Query to get room details
                 $room = Room:: where('agent_id', Auth::guard('web_agent')->user()->id)
                     ->where('id', $roomId)
                     ->first();
-
+                // If input image is not NULL
                 if ($request->image != NULL){
-                    $imageName = time().'.'.$request->image->extension();  
+                    // change image name to current upload time
+                    $imageName = time().'.'.$request->image->extension(); 
+                    // save image to public path 
                     $request->image->move(public_path('storage/images'), $imageName);
+                    // store img path into a variable
                     $imgURL = '/storage/images/'.$imageName;
+                // If in room data originally has img
                 } else {
+                    // Keep the img
                     $imgURL = $room->image;
                 }
 
@@ -61,7 +68,8 @@ class RoomController extends Controller
                 $room->image = $imgURL;
                 $room->remark = $request->get('remark');
 
-                $room->status = 0;
+                // set room status to active
+                $room->status = 0; 
                 $room->agent_id = Auth::guard('web_agent')->user()->id;
         
                 $room->save();
@@ -70,6 +78,7 @@ class RoomController extends Controller
             }
         }
         
+        // Query to get room details
         $room = Room:: where('agent_id', Auth::guard('web_agent')->user()->id)
             ->where('id', $roomId)
             ->firstOrFail();
@@ -92,6 +101,7 @@ class RoomController extends Controller
 
     public function delete(Request $request, $roomId)
     {
+        // Query to delete room
         $rooms = Room::where('agent_id', Auth::guard('web_agent')->user()->id)
             ->where('id', $roomId)
             ->delete();
@@ -101,9 +111,11 @@ class RoomController extends Controller
 
     public function create(Request $request)
     {
+        // Create new object for new room
         $room = new Room;
 
         if ($request->isMethod('POST')) {
+            // This configures a validator to validate the request
             $validator = Validator::make(
                 $request->all(),
                 [
@@ -116,16 +128,21 @@ class RoomController extends Controller
                     'remark' => ['nullable','string'],
                 ]
             );
-
+            // If validating input is not fail 
             if (!$validator->fails()) {
+                // If input image is not NULL 
                 if($request->image != NULL){
+                    // change image name to current upload time
                     $imageName = time().'.'.$request->image->extension();  
+                    // save image to public path
                     $request->image->move(public_path('storage/images'), $imageName);
+                    // store img path into a variable
                     $imgURL = '/storage/images/'.$imageName;
                 }else{
+                    // If input img is NULL then the URL would be NULL (No default img)
                     $imgURL = null;
                 }
-    
+                // create new object for new room
                 $room = new Room;
                 $room->room_title = $request->get('room_title');
                 $room->room_type = $request->get('room_type');

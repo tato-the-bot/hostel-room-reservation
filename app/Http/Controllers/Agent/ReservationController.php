@@ -14,6 +14,7 @@ class ReservationController extends Controller
 {
     public function index(Request $request)
     {   
+        // Query to get room reservation that created by the agent
         $reservations = Reservation::whereRelation('room', 'agent_id', Auth::guard('web_agent')->user()->id)->get();
     
         return view('agent.reservation-index', [
@@ -23,10 +24,12 @@ class ReservationController extends Controller
 
     public function approve(Request $request, $reservationId)
     {   
+        // Query to get room reservation where the reservation status is pending approval
         $reservation = Reservation::where('id', $reservationId)
             ->where('status', Reservation::STATUS_TYPE_PENDING_APPROVAL)
             ->first();
 
+        // Update reservation status to approved 
         $reservation->status = Reservation::STATUS_TYPE_APPROVED;
         $reservation->save();
         
@@ -35,6 +38,7 @@ class ReservationController extends Controller
 
     public function reject(Request $request, $reservationId)
     {   
+        // This configures a validator to validate the request
         $validator = Validator::make(
             $request->all(),
             [
@@ -44,17 +48,18 @@ class ReservationController extends Controller
 
         // If validating input is not fail 
         if (!$validator->fails()) {
+            // Query to get room reservation where the reservation status is pending approval
             $reservation = Reservation::where('id', $reservationId)
                 ->where('status', Reservation::STATUS_TYPE_PENDING_APPROVAL)
                 ->first();
+            // Update reservation status to reject 
             $reservation->status = Reservation::STATUS_TYPE_REJECTED;
+            // Update reservation reject remark
             $reservation->remark = $request->get('remark');
             $reservation->save(); 
-            // Redirect user back with success msg
             return redirect()->back()->with('flash_msg_success','Your feedback has been submitted Successfully,');        
         }
 
-        // If validating input is fail then get error msg 
         $viewData = [
             'errors' => !empty($validator) ? $validator->errors()->getMessages() : []
         ];
