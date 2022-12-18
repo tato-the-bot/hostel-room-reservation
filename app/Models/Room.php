@@ -25,10 +25,12 @@ class Room extends Model
 
     const STATUS_ACTIVE = 0;
     const STATUS_RESERVED = 1;
+    const STATUS_DELETE = 2;
 
     const STATUS_LABEL = [
         self::STATUS_ACTIVE => 'Active',
         self::STATUS_RESERVED => 'Reserved',
+        self::STATUS_DELETE => 'Delete',
     ];
 
     // TODO Change later

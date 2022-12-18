@@ -104,7 +104,10 @@ class RoomController extends Controller
         // Query to delete room
         $rooms = Room::where('agent_id', Auth::guard('web_agent')->user()->id)
             ->where('id', $roomId)
-            ->delete();
+            ->first();
+
+        $rooms->status = Room::STATUS_DELETE;
+        $rooms->save();
 
         return redirect()->route('agent.room-index');
     }
