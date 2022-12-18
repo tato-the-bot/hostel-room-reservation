@@ -35,13 +35,29 @@ class ReservationController extends Controller
 
     public function reject(Request $request, $reservationId)
     {   
-        $reservation = Reservation::where('id', $reservationId)
-            ->where('status', Reservation::STATUS_TYPE_PENDING_APPROVAL)
-            ->first();
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'remark' => ['required','string'],
+            ]
+        );
 
-        $reservation->status = Reservation::STATUS_TYPE_REJECTED;
-        $reservation->save();
-        
-        return redirect()->route('agent.reservation-index');
+        // If validating input is not fail 
+        if (!$validator->fails()) {
+            $reservation = Reservation::where('id', $reservationId)
+                ->where('status', Reservation::STATUS_TYPE_PENDING_APPROVAL)
+                ->first();
+            $reservation->status = Reservation::STATUS_TYPE_REJECTED;
+            $reservation->remark = $request->get('remark');
+            $reservation->save(); 
+            // Redirect user back with success msg
+            return redirect()->back()->with('flash_msg_success','Your feedback has been submitted Successfully,');        
+        }
+
+        // If validating input is fail then get error msg 
+        $viewData = [
+            'errors' => !empty($validator) ? $validator->errors()->getMessages() : []
+        ];
+        return redirect()->route('agent.reservation-index')->with($viewData);
     }
 }

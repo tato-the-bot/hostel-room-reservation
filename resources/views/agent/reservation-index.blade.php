@@ -90,7 +90,45 @@ and open the template in the editor.
                         <td>
                             @if ($reservation->status == \App\Models\Reservation::STATUS_TYPE_PENDING_APPROVAL)
                             <a href="{{ route('agent.reservation-approve', $reservation->id) }}" class="btn btn-primary">Approve Reservation</a>
-                            <a href="{{ route('agent.reservation-reject', $reservation->id) }}" class="btn btn-danger">Reject Reservation</a>
+                            <a id="reject-{{ $reservation->id }}" href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Reject Reservation</a>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Reject Reservation</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="container" method="POST" action="{{ route('agent.reservation-reject', $reservation->id) }}">
+                                            @if(count($errors) > 0) 
+                                            <div class="alert alert-danger">
+                                                @foreach ($errors as $error) 
+                                                    <div>{{$error[0]}}</div>
+                                                @endforeach
+                                            </div>
+                                            @endif
+
+                                            @csrf
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <strong>Remark:</strong>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-4">
+                                                <div class="col-12">
+                                                    <input type="text" class="form-control" name="remark" required>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-4">
+                                                <div class="col-12 d-grid gap-2">
+                                                    <button type="submit" class="btn btn-primary">Confirm</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             @endif
                         </td>
                     </tr>
@@ -98,6 +136,7 @@ and open the template in the editor.
                 </tbody>
             </table>
         </div>
+        
     </body>
     
     @include('footer')

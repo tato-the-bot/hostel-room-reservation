@@ -174,6 +174,7 @@ Route::group(['middleware' => ['auth:web_agent'], 'as' => 'agent.', 'prefix' => 
     Route::get('reservation/index', 'App\Http\Controllers\Agent\ReservationController@index')->name('reservation-index');
     Route::get('reservation/approve/{reservationId}', 'App\Http\Controllers\Agent\ReservationController@approve')->name('reservation-approve');
     Route::get('reservation/reject/{reservationId}', 'App\Http\Controllers\Agent\ReservationController@reject')->name('reservation-reject');
+    Route::post('reservation/reject/{reservationId}', 'App\Http\Controllers\Agent\ReservationController@reject')->name('reservation-reject');
 
     Route::get('profile/view', 'App\Http\Controllers\Agent\AgentController@index')->name('profile-view');
     Route::get('profile/update', 'App\Http\Controllers\Agent\AgentController@update')->name('profile-update');

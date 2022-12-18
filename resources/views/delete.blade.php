@@ -36,7 +36,7 @@
                             return false;
                         }
                     });
-            </script>
+                </script>
             </form>
         </div>
     </body>
