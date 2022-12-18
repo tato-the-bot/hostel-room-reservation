@@ -121,6 +121,9 @@ and open the template in the editor.
                             Name
                         </th>
                         <th>
+                            User Type
+                        </th>
+                        <th>
                             Rating
                         </th>
                         <th>
@@ -138,13 +141,16 @@ and open the template in the editor.
                             {{ $feedback->name }}
                         </td>
                         <td>
+                            {{ $feedback->role }}
+                        </td>
+                        <td>
                             <div class="rated">
                                 @for($i=1; $i<=$feedback->rate; $i++)
                                     {{-- <input type="radio" id="star{{$i}}" class="rate" name="rating" value="5"/> --}}
                                     <label class="star-rating-complete" title="text">{{$i}} stars</label>
                                 @endfor
                             </div>
-                        </td>
+                        </td>             
                         <td>
                             {{ $feedback->comments }}
                         </td>

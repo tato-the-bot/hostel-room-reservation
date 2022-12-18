@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Feedback;
+use Illuminate\Support\Facades\Auth;
 
 class FeedbackController extends Controller
 {
@@ -25,6 +26,13 @@ class FeedbackController extends Controller
             $feedbacks->name = $request->get('name');
             $feedbacks->rate = $request->get('rate');
             $feedbacks->comments = $request->get('comments');
+            if(Auth::guard('web_student')->user()!= NULL){
+                $feedbacks->student_id = Auth::guard('web_student')->user()->id;
+                $feedbacks->role = 'STUDENT' ;
+            }else if(Auth::guard('web_agent')->user()!= NULL){
+                $feedbacks->student_id = Auth::guard('web_agent')->user()->id;
+                $feedbacks->role = 'AGENT' ;
+            }
             $feedbacks->save();
             return redirect()->back()->with('flash_msg_success','Your feedback has been submitted Successfully,');        
         }
