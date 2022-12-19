@@ -64,7 +64,7 @@ class RoomController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'contract_start_date' => ['required', 'date_format:Y-m-d'],
+                'contract_start_date' => ['required', 'date_format:Y-m-d', 'after_or_equal:today'],
                 'duration' => ['required', 'numeric'],
             ]
         );
@@ -80,6 +80,8 @@ class RoomController extends Controller
             $reservation->save();
 
             return redirect()->route('room-index');
+        } else {
+            $request->session()->flash('errors', $validator->errors()->getMessages());
         }
 
         return redirect()->route('room-view', $roomId);

@@ -22,6 +22,50 @@
                 text-transform: uppercase;
                 color: #000;
             }
+            
+
+            @if (Auth::guard('web_student')->user() || Auth::guard('web_agent')->user() || Auth::guard('web_admin')->user())
+                    @if (Auth::guard('web_student')->user())
+                    nav{
+                        z-index: 100;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100px;
+                        padding: 10px 90px;
+                        box-sizing: border-box;
+                        background: rgb(204, 204, 255);
+                        z-index: 1;
+                    }
+                    @elseif (Auth::guard('web_agent')->user())
+                    nav{
+                        z-index: 100;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100px;
+                        padding: 10px 90px;
+                        box-sizing: border-box;
+                        background: rgb(249, 255, 133);
+                        z-index: 1;
+                    }
+                    @elseif (Auth::guard('web_admin')->user())
+                    nav{
+                        z-index: 100;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100px;
+                        padding: 10px 90px;
+                        box-sizing: border-box;
+                        background: rgb(249, 92, 39);
+                        z-index: 1;
+                    }
+                    @endif
+            @else
             nav{
                 z-index: 100;
                 position: fixed;
@@ -34,6 +78,8 @@
                 background: rgb(204, 204, 255);
                 z-index: 1;
             }
+            @endif
+
             nav ul{
                 list-style: none;
                 float: right;

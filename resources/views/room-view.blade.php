@@ -115,6 +115,14 @@ and open the template in the editor.
         </div>
 
         <div class="container pb-4">
+            @if(Session::has('errors'))
+                <div class="alert alert-danger">
+                    @foreach (Session::get('errors') as $error) 
+                    <div>{{$error[0]}}</div>
+                    @endforeach
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-4">
                     <img src="{{ $room->image }}" height="250" width="250" class="card-img-top" >
@@ -237,7 +245,6 @@ and open the template in the editor.
                             </div>
                         </div>
                     @endforeach
-
                 </div>
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

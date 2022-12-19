@@ -18,6 +18,9 @@ and open the template in the editor.
         <div class="room" style="margin-top:150px">
             <h1 style="font-size: 30px;color: black;font-weight: bold;text-align: center;">Reservations</h1>
             <div style="display:flex; justify-content:flex-end; width:100%; padding-right:100px;">
+                <p class="bg-secondary text-white px-3" style="border-radius:50px;">Welcome, {{Auth::guard('web_agent')->user()->name}}</p>
+            </div>
+            <div style="display:flex; justify-content:flex-end; width:100%; padding-right:100px;">
                 <a href="{{ route('agent.profile-view') }}" class="btn btn-primary">Manage Profile</a>
             </div>
             <hr style="width:90%;border-top: 2px groove #8c8c8c; margin: 1rem auto !important;">

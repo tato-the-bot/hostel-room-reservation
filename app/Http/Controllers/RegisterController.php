@@ -32,7 +32,7 @@ class RegisterController extends Controller
                 $request->all(),
                 [
                     'name' => ['required'],
-                    'student_id' => ['required', 'unique:App\Models\Student,student_id'],
+                    'student_id' => ['required', 'unique:App\Models\Student,student_id', 'numeric', 'digits:7'],
                     'email' => ['required', 'unique:App\Models\Student,email'],
                     'phone_number' => ['required'],
                     'password' => ['required', 'confirmed'],
